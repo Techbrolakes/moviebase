@@ -1,0 +1,7 @@
+{
+    "extends": ["plugin:sort-keys-fix/recommended"],
+    "plugins": ["sort-keys-fix"],
+    "rules": {
+        "sort-keys-fix/sort-keys-fix": ["warn", "asc", { "caseSensitive": false, "natural": true }]
+    }
+}
