@@ -20,8 +20,8 @@ class TmdbClient<T> {
         this.endpoint = endpoint;
     }
 
-    getAll = (page?: number | 1, queryParams: string = '') => {
-        const url = `${this.endpoint}?api_key=${tmdbApiKey}&page=${page}${queryParams}`;
+    getAll = ({ page, queryParams }: { page: any; queryParams: any }) => {
+        const url = `${this.endpoint}?api_key=${tmdbApiKey}&page=${page || 1}&query=${queryParams}`;
         return tmdbInstance.get<ApiResponse<T>>(url).then((response) => response.data);
     };
 
