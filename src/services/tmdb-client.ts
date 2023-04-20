@@ -20,14 +20,24 @@ class TmdbClient<T> {
         this.endpoint = endpoint;
     }
 
-    getAll = ({ page, queryParams }: { page: any; queryParams: any }) => {
+    getWithApiResponse = ({ page, queryParams }: { page?: any; queryParams?: any } = {}) => {
         const url = `${this.endpoint}?api_key=${tmdbApiKey}&page=${page || 1}&query=${queryParams}`;
         return tmdbInstance.get<ApiResponse<T>>(url).then((response) => response.data);
     };
 
-    getById = (id: number | string) => {
-        const url = `${this.endpoint}/${id}?api_key=${tmdbApiKey}`;
+    getWithoutApiResponse = () => {
+        const url = `${this.endpoint}?api_key=${tmdbApiKey}`;
         return tmdbInstance.get<T>(url).then((res) => res.data);
+    };
+
+    getById = () => {
+        const url = `${this.endpoint}?api_key=${tmdbApiKey}`;
+        return tmdbInstance.get<T>(url).then((res) => res.data);
+    };
+
+    getByIdWithApiResponse = ({ page }: { page?: number }) => {
+        const url = `${this.endpoint}?api_key=${tmdbApiKey}&page=${page || 1}`;
+        return tmdbInstance.get<ApiResponse<T>>(url).then((res) => res.data);
     };
 }
 

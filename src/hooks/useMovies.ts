@@ -23,7 +23,8 @@ const useMovies = () => {
     return useInfiniteQuery<ApiResponse<Movies>, Error>({
         queryKey: ['movies', movieQuery],
         onError: (error) => console.log(error),
-        queryFn: ({ pageParam = 1 }) => tmdbClient.getAll({ page: pageParam, queryParams: movieQuery.searchText }),
+        queryFn: ({ pageParam = 1 }) =>
+            tmdbClient.getWithApiResponse({ page: pageParam, queryParams: movieQuery.searchText }),
         getNextPageParam: (lastPage) => {
             return lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined;
         },
