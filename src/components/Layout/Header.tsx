@@ -3,7 +3,7 @@ import React from 'react';
 
 const Header: React.FC = () => {
    return (
-      <Box position={'fixed'} bg={'#000'} w={'82.55vw'} h={'50px'}>
+      <Box position={'fixed'} zIndex={10} bg={'#000'} w={'82.55vw'} h={'50px'}>
          Header
       </Box>
    );

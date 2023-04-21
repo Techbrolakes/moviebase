@@ -1,40 +1,62 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Box, Image, SimpleGrid } from '@chakra-ui/react';
+import { Box, Image, SimpleGrid, Stack } from '@chakra-ui/react';
 import useMovies from '@hooks/useMovies';
+import MovieCardContainer from '@components/Blocks/MovieCardContainer';
+import MovieCardSkeleton from '@components/Blocks/MovieCardSkeleton';
+import Loading from '@components/Blocks/Loading';
+
+const CustomLoader = () => (
+   <Stack px={4} py={4}>
+      <Loading />
+   </Stack>
+);
 
 const HomeSection: React.FC = () => {
    const { data, isLoading, fetchNextPage, hasNextPage } = useMovies();
-   const scrollRef = useRef(null);
+   const skeletons = [1, 2, 3, 4, 5, 6];
 
    if (isLoading) {
-      return <div>Loading...</div>;
+      return (
+         <Stack spacing={4} px={4} py={20}>
+            <Loading />
+            <Loading />
+            <Loading />
+         </Stack>
+      );
    }
 
    return (
-      <div>
-         <InfiniteScroll dataLength={data?.pages.length || 0} next={fetchNextPage} hasMore={!!hasNextPage} loader={<p>Loading...</p>} scrollableTarget="scrollableDiv">
+      <Stack py={20}>
+         <InfiniteScroll dataLength={data?.pages.length || 0} next={fetchNextPage} hasMore={!!hasNextPage} loader={<CustomLoader />} scrollableTarget="scrollableDiv">
             {data?.pages.map((page, index) => (
-               <Box py={'20'} key={index}>
+               <Box key={index}>
                   <section>
-                     {page?.results.map(({ poster_path, id }) => (
-                        <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6} padding="10px">
-                           <Box w={'320px'} cursor={'pointer'}>
+                     <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={20} padding="10px">
+                        {isLoading &&
+                           skeletons.map((skeleton) => (
+                              <MovieCardContainer key={skeleton}>
+                                 <MovieCardSkeleton />
+                              </MovieCardContainer>
+                           ))}
+                        {page?.results.map(({ poster_path, id }) => (
+                           <MovieCardContainer key={id}>
                               <Image
-                                 key={id}
-                                 boxSize={'400px'}
-                                 objectFit="contain"
+                                 w={'600px'}
+                                 shadow={'xl'}
+                                 borderRadius={'10px'}
+                                 h={'450px'}
+                                 objectFit={'cover'}
                                  src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : 'https://www.fillmurray.com/200/300'}
-                                 fallbackSrc="https://via.placeholder.com/150"
                               />
-                           </Box>
-                        </SimpleGrid>
-                     ))}
+                           </MovieCardContainer>
+                        ))}
+                     </SimpleGrid>
                   </section>
                </Box>
             ))}
          </InfiniteScroll>
-      </div>
+      </Stack>
    );
 };
 
