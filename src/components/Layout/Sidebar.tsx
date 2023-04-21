@@ -4,13 +4,14 @@ import useMovieQueryStore from '@config/store';
 import useGenres from '@hooks/useGenres';
 import genresIcons from '@src/assets/genres';
 import SCREEN_TEXTS from './constants';
+import Loading from '@components/Blocks/Loading';
 
 const { BtnStyles, categories } = SCREEN_TEXTS;
 const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
 const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
 
 const Sidebar: React.FC = () => {
-   const { data } = useGenres();
+   const { data, isLoading } = useGenres();
    const setGenre = useMovieQueryStore((s) => s.setGenre);
    const setCategory = useMovieQueryStore((s) => s.setCategory);
    const selectedGenreId = useMovieQueryStore((s) => s.filters.genre);
@@ -18,6 +19,15 @@ const Sidebar: React.FC = () => {
    const filter = useColorModeValue('none', 'invert(1)');
    const logo = useColorModeValue(redLogo, blueLogo);
 
+   if (isLoading) {
+      return (
+         <Stack spacing={4} px={4} py={4}>
+            <Loading />
+            <Loading />
+            <Loading />
+         </Stack>
+      );
+   }
    return (
       <Stack py={4} spacing={6}>
          <div>

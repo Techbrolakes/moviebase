@@ -5,6 +5,7 @@ import useMovies from '@hooks/useMovies';
 import MovieCardContainer from '@components/Blocks/MovieCardContainer';
 import MovieCardSkeleton from '@components/Blocks/MovieCardSkeleton';
 import Loading from '@components/Blocks/Loading';
+import FeaturedMovie from './FeaturedMovie';
 
 const CustomLoader = () => (
    <Stack px={4} py={4}>
@@ -27,7 +28,8 @@ const HomeSection: React.FC = () => {
    }
 
    return (
-      <Stack py={20}>
+      <Stack py={20} spacing={8}>
+         <FeaturedMovie />
          <InfiniteScroll dataLength={data?.pages.length || 0} next={fetchNextPage} hasMore={!!hasNextPage} loader={<CustomLoader />} scrollableTarget="scrollableDiv">
             {data?.pages.map((page, index) => (
                <Box key={index}>
