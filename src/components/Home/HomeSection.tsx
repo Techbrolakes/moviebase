@@ -1,14 +1,40 @@
 import React from 'react';
-import Header from './Header';
-import Sidebar from './Sidebar';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { Box, Image, SimpleGrid } from '@chakra-ui/react';
+import useMovies from '@hooks/useMovies';
 
 const HomeSection: React.FC = () => {
-    return (
-        <div>
-            <Header />
-            <Sidebar />
-        </div>
-    );
+   const { data, isLoading, fetchNextPage, hasNextPage } = useMovies();
+
+   if (isLoading) {
+      return <div>Loading...</div>;
+   }
+
+   return (
+      <div>
+         <InfiniteScroll dataLength={data?.pages.length || 0} next={fetchNextPage} hasMore={!!hasNextPage} loader={<p>Loading...</p>}>
+            {data?.pages.map((page, index) => (
+               <Box py={'40'} key={index}>
+                  <section>
+                     {page?.results.map(({ poster_path, id }) => (
+                        <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6} padding="10px">
+                           <Box w={'320px'} cursor={'pointer'}>
+                              <Image
+                                 key={id}
+                                 boxSize={'400px'}
+                                 objectFit="contain"
+                                 src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : 'https://www.fillmurray.com/200/300'}
+                                 fallbackSrc="https://via.placeholder.com/150"
+                              />
+                           </Box>
+                        </SimpleGrid>
+                     ))}
+                  </section>
+               </Box>
+            ))}
+         </InfiniteScroll>
+      </div>
+   );
 };
 
 export default HomeSection;

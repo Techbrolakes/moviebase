@@ -22,29 +22,33 @@ import popular from './popular.png';
 import topRated from './top rated.png';
 import upcoming from './upcoming.png';
 
-const genresIcon = {
-    action,
-    adventure,
-    animation,
-    comedy,
-    crime,
-    documentary,
-    drama,
-    family,
-    fantasy,
-    horror,
-    history,
-    mystery,
-    music,
-    romance,
-    'science fiction': scienceFiction,
-    thriller,
-    'tv movie': tvMovie,
-    war,
-    western,
-    popular,
-    'top rated': topRated,
-    upcoming,
+type GenresIcons = {
+   [key: string]: string;
 };
 
-export default genresIcon;
+const genresIcons: GenresIcons = {
+   action,
+   adventure,
+   animation,
+   comedy,
+   crime,
+   documentary,
+   drama,
+   family,
+   fantasy,
+   horror,
+   history,
+   mystery,
+   music,
+   romance,
+   'science fiction': scienceFiction,
+   thriller,
+   'tv movie': tvMovie,
+   war,
+   western,
+   popular,
+   'top rated': topRated,
+   upcoming,
+};
+
+export default genresIcons;

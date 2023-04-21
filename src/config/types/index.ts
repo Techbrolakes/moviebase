@@ -16,7 +16,7 @@ export interface ActorDetails {
 
 export interface Genres {
     genres: {
-        id: number;
+        id: string;
         name: string;
     }[];
 }
