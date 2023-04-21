@@ -32,44 +32,18 @@
    font-style: normal;
 }
 
-// BEGINNING OF SIDEBAR STYLES
-.sidebar {
-   flex: 0.14;
-   max-height: 100vh;
-   overflow-y: auto;
-   width: 100%;
+// ::-webkit-scrollbar {
+//    width: 7px;
+// }
 
-   @media (max-width: 850px) {
-      display: none;
-   }
-}
+// ::-webkit-scrollbar-track {
+//    background: #cfcfcf;
+// }
 
-// MAIN LAYOUT STYLES
-.main {
-   flex: 0.86;
-   width: 100%;
-}
+// ::-webkit-scrollbar-thumb {
+//    background: #a5a5a5;
+// }
 
-.app {
-   display: flex;
-   width: 100%;
-   @media (max-width: 850px) {
-      display: block;
-   }
-}
-
-::-webkit-scrollbar {
-   width: 7px;
-}
-
-::-webkit-scrollbar-track {
-   background: #cfcfcf;
-}
-
-::-webkit-scrollbar-thumb {
-   background: #a5a5a5;
-}
-
-* {
-   text-decoration: none;
-}
+// * {
+//    text-decoration: none;
+// }

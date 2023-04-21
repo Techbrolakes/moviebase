@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, Show } from '@chakra-ui/react';
+import { Box, Grid, GridItem } from '@chakra-ui/react';
 import Header from '@components/Layout/Header';
 import Sidebar from '@components/Layout/Sidebar';
 import React from 'react';
@@ -6,16 +6,18 @@ import { Outlet } from 'react-router-dom';
 
 const Layout: React.FC = () => {
    return (
-      <Box>
-         <section className="app">
-            <div className="sidebar">
+      <Box height="100vh">
+         <Grid templateAreas={{ base: `"main"`, lg: `"aside main"` }} templateColumns={{ base: '1fr', lg: '250px 1fr' }} height="100%">
+            <GridItem overflowY="auto" h="100vh">
                <Sidebar />
-            </div>
-            <div className="main">
-               <Header />
-               <Outlet />
-            </div>
-         </section>
+            </GridItem>
+            <GridItem>
+               <Box overflowY="auto" h="calc(100vh - 2px)" id="scrollableDiv">
+                  <Header />
+                  <Outlet />
+               </Box>
+            </GridItem>
+         </Grid>
       </Box>
    );
 };
