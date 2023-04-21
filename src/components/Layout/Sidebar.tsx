@@ -6,6 +6,8 @@ import genresIcons from '@src/assets/genres';
 import SCREEN_TEXTS from './constants';
 
 const { BtnStyles, categories } = SCREEN_TEXTS;
+const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
+const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
 
 const Sidebar: React.FC = () => {
    const { data } = useGenres();
@@ -14,12 +16,13 @@ const Sidebar: React.FC = () => {
    const selectedGenreId = useMovieQueryStore((s) => s.filters.genre);
    const selectedCategoryId = useMovieQueryStore((s) => s.filters.category);
    const filter = useColorModeValue('none', 'invert(1)');
+   const logo = useColorModeValue(redLogo, blueLogo);
 
    return (
       <Stack py={4} spacing={6}>
          <div>
             <Heading mb={4} fontSize={'2xl'} textAlign={'center'}>
-               MovieBase
+               <Image width={'150px'} objectFit={'contain'} src={logo} alt="logo" mx={'auto'} />
             </Heading>
             <Divider />
          </div>
@@ -27,7 +30,7 @@ const Sidebar: React.FC = () => {
          {/* CATEGORY LISTS */}
          <Stack spacing={6} px={4}>
             <Text fontSize={'md'}>Categories</Text>
-            <List spacing={6}>
+            <List spacing={8}>
                {categories.map(({ label, value }) => (
                   <ListItem key={value} cursor={'pointer'} onClick={() => setCategory(value)}>
                      <HStack>
@@ -45,7 +48,7 @@ const Sidebar: React.FC = () => {
          {/* GENRES LISTS */}
          <Stack spacing={6} px={4}>
             <Text fontSize={'md'}>Genres</Text>
-            <List spacing={6}>
+            <List spacing={8}>
                {data?.genres.map(({ name, id }) => (
                   <ListItem key={id} cursor={'pointer'} onClick={() => setGenre(id)}>
                      <HStack>

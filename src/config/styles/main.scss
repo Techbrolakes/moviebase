@@ -1,5 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap');
 
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'satoshi', sans-serif;
+}
+
+@font-face {
+   font-family: 'satoshi';
+   src: url('../../assets/fonts/Satoshi-Light.otf') format('truetype');
+   font-weight: light;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'satoshi';
+   src: url('../../assets/fonts/Satoshi-Regular.otf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'satoshi';
+   src: url('../../assets/fonts/Satoshi-Medium.otf') format('truetype');
+   font-weight: medium;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'satoshi';
+   src: url('../../assets/fonts/Satoshi-Bold.otf') format('truetype');
+   font-weight: bold;
+   font-style: normal;
+}
+
 // BEGINNING OF SIDEBAR STYLES
 .sidebar {
    flex: 0.14;
