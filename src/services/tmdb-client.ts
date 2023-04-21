@@ -7,10 +7,10 @@ export interface ApiResponse<T> {
     total_results: number;
 }
 
-const tmdbApiKey = 'ae5b499166e31fb991742cee179dca6a';
+const tmdbApiKey = import.meta.env.VITE_TMDB_API_KEY;
 
 const tmdbInstance = axios.create({
-    baseURL: 'https://api.themoviedb.org/3',
+    baseURL: import.meta.env.VITE_TMDB_BASE_URL,
 });
 
 class TmdbClient<T> {
@@ -19,6 +19,7 @@ class TmdbClient<T> {
     constructor(endpoint: string) {
         this.endpoint = endpoint;
     }
+
     getWithApiResponse = ({
         page = 1,
         queryParams = '',
