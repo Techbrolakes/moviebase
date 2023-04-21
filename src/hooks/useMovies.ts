@@ -1,7 +1,7 @@
-import useMovieQueryStore from '../config/store';
-import { Movies } from '../config/types';
+import useMovieQueryStore from '@config/store';
+import { Movies } from '@config/types';
+import TmdbClient, { ApiResponse } from '@services/tmdb-client';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import TmdbClient, { ApiResponse } from '../services/tmdb-client';
 
 const useMovies = () => {
     const movieQuery = useMovieQueryStore((s) => s.filters);

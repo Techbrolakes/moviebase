@@ -1,6 +1,6 @@
+import { Movies } from '@config/types';
+import TmdbClient, { ApiResponse } from '@services/tmdb-client';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import TmdbClient, { ApiResponse } from '../services/tmdb-client';
-import { Movies } from '../config/types';
 
 const useRecommendations = (id: number) => {
     const tmdbClient = new TmdbClient<Movies>(`/movie/${id}/recommendations`);

@@ -1,11 +1,11 @@
 import React from 'react';
-import useMovies from '@/hooks/useMovies';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import useGenres from '../../hooks/useGenres';
-import useActors from '@/hooks/useActors';
-import useMovie from '@/hooks/useMovie';
 import { Image, useColorModeValue, Box } from '@chakra-ui/react';
-import HomeSection from '../../components/Home/HomeSection';
+import HomeSection from '@components/Home/HomeSection';
+import useMovies from '@hooks/useMovies';
+import useGenres from '@hooks/useGenres';
+import useActors from '@hooks/useActors';
+import useMovie from '@hooks/useMovie';
 
 const HomePage: React.FC = () => {
     const { data, isLoading, fetchNextPage, hasNextPage } = useMovies();
