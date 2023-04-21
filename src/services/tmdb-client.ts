@@ -19,9 +19,26 @@ class TmdbClient<T> {
     constructor(endpoint: string) {
         this.endpoint = endpoint;
     }
+    getWithApiResponse = ({
+        page = 1,
+        queryParams = '',
+        with_genres = '',
+        sort_by = '',
+    }: { page?: number; queryParams?: string; with_genres?: string; sort_by?: string } = {}) => {
+        let url = `${this.endpoint}?api_key=${tmdbApiKey}&page=${page}`;
 
-    getWithApiResponse = ({ page, queryParams }: { page?: any; queryParams?: any } = {}) => {
-        const url = `${this.endpoint}?api_key=${tmdbApiKey}&page=${page || 1}&query=${queryParams}`;
+        if (with_genres) {
+            url += `&with_genres=${with_genres}`;
+        }
+
+        if (queryParams) {
+            url += `&query=${queryParams}`;
+        }
+
+        if (sort_by) {
+            url += `&sort_by=${sort_by}`;
+        }
+
         return tmdbInstance.get<ApiResponse<T>>(url).then((response) => response.data);
     };
 

@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { RouterProvider } from 'react-router-dom';
 import theme from './config/theme';
-import router from './config/routes';
+import router from './config/routes/routes';
 
 const queryClient = new QueryClient();
 

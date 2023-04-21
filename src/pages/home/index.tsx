@@ -5,10 +5,9 @@ import { Box, Button } from '@chakra-ui/react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import useGenres from '../../hooks/useGenres';
 import useActors from '../../hooks/useActors';
-import useRecommendations from '../../hooks/useRecommendations';
 
 const HomePage: React.FC = () => {
-    const setSearchText = useMovieQueryStore((state) => state.setSearchText);
+    const setSortBy = useMovieQueryStore((state) => state.setSortBy);
     const { data, isLoading, fetchNextPage, hasNextPage } = useMovies();
     const { data: genres } = useGenres();
     const { data: actors } = useActors(2219);
@@ -21,7 +20,7 @@ const HomePage: React.FC = () => {
 
     return (
         <>
-            <Button onClick={() => setSearchText('creed')}>Click Me</Button>
+            <Button onClick={() => setSortBy('vote_count.desc')}>Click Me</Button>
             <div>
                 {genres?.genres.map((genre) => (
                     <span>{genre.name}</span>

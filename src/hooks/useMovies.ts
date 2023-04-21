@@ -13,7 +13,9 @@ const useMovies = () => {
     } else if (movieQuery.category) {
         endpoint = `/movie/${movieQuery.category}`;
     } else if (movieQuery.genre) {
-        endpoint = `discover/movie?with_genres=${movieQuery.genre}`;
+        endpoint = `discover/movie`;
+    } else if (movieQuery.sortBy) {
+        endpoint = `discover/movie`;
     } else {
         endpoint = `/movie/popular`;
     }
@@ -24,7 +26,12 @@ const useMovies = () => {
         queryKey: ['movies', movieQuery],
         onError: (error) => console.log(error),
         queryFn: ({ pageParam = 1 }) =>
-            tmdbClient.getWithApiResponse({ page: pageParam, queryParams: movieQuery.searchText }),
+            tmdbClient.getWithApiResponse({
+                page: pageParam,
+                queryParams: movieQuery.searchText,
+                with_genres: movieQuery.genre,
+                sort_by: movieQuery.sortBy,
+            }),
         getNextPageParam: (lastPage) => {
             return lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined;
         },
