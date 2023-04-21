@@ -1,21 +1,18 @@
 import React from 'react';
 import useMovies from '../../hooks/useMovies';
-import useMovieQueryStore from '../../config/store';
-import { Box, Button } from '@chakra-ui/react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import useGenres from '../../hooks/useGenres';
 import useActors from '../../hooks/useActors';
 import useMovie from '../../hooks/useMovie';
+import { Image, useColorModeValue, Box } from '@chakra-ui/react';
+import HomeSection from '../../components/Home/HomeSection';
 
 const HomePage: React.FC = () => {
-    const setSortBy = useMovieQueryStore((state) => state.setSortBy);
     const { data, isLoading, fetchNextPage, hasNextPage } = useMovies();
     const { data: genres } = useGenres();
     const { data: actors } = useActors(2219);
     const { data: movie } = useMovie(640146);
-
-    console.log('actors', actors);
-    console.log('movie', movie);
+    const filter = useColorModeValue('none', 'invert(1)');
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -23,7 +20,8 @@ const HomePage: React.FC = () => {
 
     return (
         <>
-            <Button onClick={() => setSortBy('vote_count.desc')}>Click Me</Button>
+            <HomeSection />
+            <Image src="https://example.com/my-image.png" style={{ filter }} alt="My Image" />
             <div>
                 {genres?.genres.map((genre) => (
                     <span>{genre.name}</span>
