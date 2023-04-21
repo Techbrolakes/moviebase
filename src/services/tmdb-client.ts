@@ -45,11 +45,16 @@ class TmdbClient<T> {
 
     getWithoutApiResponse = () => {
         const url = `${this.endpoint}?api_key=${tmdbApiKey}`;
+
         return tmdbInstance.get<T>(url).then((res) => res.data);
     };
 
-    getById = () => {
-        const url = `${this.endpoint}?api_key=${tmdbApiKey}`;
+    getById = ({ append_to_response = false }: { append_to_response?: boolean } = {}) => {
+        let url = `${this.endpoint}?api_key=${tmdbApiKey}`;
+
+        if (append_to_response) {
+            url += `&append_to_response=videos,credits,images`;
+        }
         return tmdbInstance.get<T>(url).then((res) => res.data);
     };
 

@@ -5,14 +5,17 @@ import { Box, Button } from '@chakra-ui/react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import useGenres from '../../hooks/useGenres';
 import useActors from '../../hooks/useActors';
+import useMovie from '../../hooks/useMovie';
 
 const HomePage: React.FC = () => {
     const setSortBy = useMovieQueryStore((state) => state.setSortBy);
     const { data, isLoading, fetchNextPage, hasNextPage } = useMovies();
     const { data: genres } = useGenres();
     const { data: actors } = useActors(2219);
+    const { data: movie } = useMovie(640146);
 
     console.log('actors', actors);
+    console.log('movie', movie);
 
     if (isLoading) {
         return <div>Loading...</div>;
