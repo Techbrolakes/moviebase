@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom';
 import ReactStarRatings from 'react-star-ratings';
 import RecommendedMovies from './Tabs/RecommendedMovies';
 import CustomLoader from '@components/Blocks/CustomLoader';
+import CastsTab from './Tabs/CastsTab';
+import MovieImages from './Tabs/MovieImages';
 
 const { fallbackSrc, tmdbSrc } = config;
 
@@ -62,19 +64,20 @@ const MovieDetails: React.FC = () => {
 
             <Tabs isFitted variant="enclosed">
                <TabList mb="1em">
-                  <Tab>Recommended Movies</Tab>
                   <Tab>Movie Casts</Tab>
+                  <Tab>Recommended Movies</Tab>
                   <Tab>Images from {data?.title}</Tab>
                </TabList>
+
                <TabPanels>
+                  <TabPanel>
+                     <CastsTab data={data} />
+                  </TabPanel>
                   <TabPanel>
                      <RecommendedMovies id={id} />
                   </TabPanel>
                   <TabPanel>
-                     <p>two!</p>
-                  </TabPanel>
-                  <TabPanel>
-                     <p>two!</p>
+                     <MovieImages data={data} />
                   </TabPanel>
                </TabPanels>
             </Tabs>

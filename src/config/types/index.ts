@@ -53,6 +53,7 @@ export interface MovieDetails {
             credit_id: string;
             department: string;
             job: string;
+            character: string;
          },
       ];
    };
