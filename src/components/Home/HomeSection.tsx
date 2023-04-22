@@ -6,6 +6,7 @@ import MovieCardContainer from '@components/Blocks/MovieCardContainer';
 import MovieCardSkeleton from '@components/Blocks/MovieCardSkeleton';
 import Loading from '@components/Blocks/Loading';
 import FeaturedMovie from './FeaturedMovie';
+import { useNavigate } from 'react-router-dom';
 
 const CustomLoader = () => (
    <Stack px={4} py={4}>
@@ -15,6 +16,7 @@ const CustomLoader = () => (
 
 const HomeSection: React.FC = () => {
    const { data, isLoading, fetchNextPage, hasNextPage } = useMovies();
+   const navigate = useNavigate();
    const skeletons = [1, 2, 3, 4, 5, 6];
 
    if (isLoading) {
@@ -42,17 +44,19 @@ const HomeSection: React.FC = () => {
                               </MovieCardContainer>
                            ))}
                         {page?.results.map(({ poster_path, id }) => (
-                           <MovieCardContainer key={id}>
-                              <Image
-                                 w={'600px'}
-                                 shadow={'xl'}
-                                 borderRadius={'10px'}
-                                 h={'450px'}
-                                 fallbackSrc="https://competent-fermi-0457c4.netlify.app/static/media/no_image.22d2aa4d.jpg"
-                                 objectFit={'cover'}
-                                 src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : 'https://www.fillmurray.com/200/300'}
-                              />
-                           </MovieCardContainer>
+                           <div key={id} onClick={() => navigate(`movie/${id}`)}>
+                              <MovieCardContainer>
+                                 <Image
+                                    w={'600px'}
+                                    shadow={'xl'}
+                                    borderRadius={'10px'}
+                                    h={'450px'}
+                                    fallbackSrc="https://competent-fermi-0457c4.netlify.app/static/media/no_image.22d2aa4d.jpg"
+                                    objectFit={'cover'}
+                                    src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : 'https://www.fillmurray.com/200/300'}
+                                 />
+                              </MovieCardContainer>
+                           </div>
                         ))}
                      </SimpleGrid>
                   </section>

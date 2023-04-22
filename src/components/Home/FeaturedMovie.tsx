@@ -1,28 +1,19 @@
-import { Box, Stack, Text } from '@chakra-ui/react';
-import useMovies from '@hooks/useMovies';
 import React from 'react';
+import { Box, Stack, Text } from '@chakra-ui/react';
+import { featuresBoxStyles, overlayStyles, responsiveHeader, responsiveText } from '@config/styles';
+import useMovies from '@hooks/useMovies';
 
 const FeaturedMovie: React.FC = () => {
    const { data } = useMovies();
 
    return (
-      <Box
-         height={'550px'}
-         w={'1200px'}
-         borderRadius={'10px'}
-         mx={'auto'}
-         bgImage={`https://image.tmdb.org/t/p/original/${data?.pages[0]?.results[0]?.backdrop_path}`}
-         bgRepeat={'no-repeat'}
-         bgSize={'cover'}
-         bgPosition={'center'}
-         position="relative"
-      >
-         <Box position="absolute" top="0" left="0" w="100%" h="100%" bg="rgba(0, 0, 0, 0.7)" borderRadius={'10px'} />
-         <Stack spacing={4} position={'absolute'} bottom={10} px={4} color={'white'}>
-            <Text fontSize={'xl'} fontWeight={'semibold'}>
-               {data?.pages[0].results[0].title}
+      <Box bgImage={`https://image.tmdb.org/t/p/original/${data?.pages[0]?.results[0]?.backdrop_path}`} sx={featuresBoxStyles}>
+         <Box sx={overlayStyles} />
+         <Stack spacing={4} sx={{ position: 'absolute', bottom: 10, px: 4, color: 'white' }}>
+            <Text sx={responsiveHeader}>{data?.pages[0].results[0].title}</Text>
+            <Text w={['100%', '60%']} sx={responsiveText}>
+               {data?.pages[0].results[0].overview}
             </Text>
-            <Text w={'60%'}>{data?.pages[0].results[0].overview}</Text>
          </Stack>
       </Box>
    );

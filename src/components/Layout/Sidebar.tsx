@@ -5,6 +5,7 @@ import useGenres from '@hooks/useGenres';
 import genresIcons from '@src/assets/genres';
 import SCREEN_TEXTS from './constants';
 import Loading from '@components/Blocks/Loading';
+import { useNavigate } from 'react-router-dom';
 
 const { BtnStyles, categories } = SCREEN_TEXTS;
 const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
@@ -18,6 +19,17 @@ const Sidebar: React.FC = () => {
    const selectedCategoryId = useMovieQueryStore((s) => s.filters.category);
    const filter = useColorModeValue('none', 'invert(1)');
    const logo = useColorModeValue(redLogo, blueLogo);
+   const navigate = useNavigate();
+
+   const handleCategoryClick = (id: string) => {
+      navigate('/');
+      setCategory(id);
+   };
+
+   const handleGenreClick = (id: string) => {
+      navigate('/');
+      setGenre(id);
+   };
 
    if (isLoading) {
       return (
@@ -42,7 +54,7 @@ const Sidebar: React.FC = () => {
             <Text fontSize={'md'}>Categories</Text>
             <List spacing={8}>
                {categories.map(({ label, value }) => (
-                  <ListItem key={value} cursor={'pointer'} onClick={() => setCategory(value)}>
+                  <ListItem key={value} cursor={'pointer'} onClick={() => handleCategoryClick(value)}>
                      <HStack>
                         <Image boxSize="25px" style={{ filter }} src={genresIcons[label.toLowerCase()]} alt="Dan Abramov" />
                         <Button variant={'link'} sx={BtnStyles} fontWeight={value === selectedCategoryId ? 'bold' : 'normal'}>
@@ -60,7 +72,7 @@ const Sidebar: React.FC = () => {
             <Text fontSize={'md'}>Genres</Text>
             <List spacing={8}>
                {data?.genres.map(({ name, id }) => (
-                  <ListItem key={id} cursor={'pointer'} onClick={() => setGenre(id)}>
+                  <ListItem key={id} cursor={'pointer'} onClick={() => handleGenreClick(id)}>
                      <HStack>
                         <Image boxSize="25px" style={{ filter }} src={genresIcons[name.toLowerCase()]} alt="Dan Abramov" />
                         <Button variant={'link'} sx={BtnStyles} fontWeight={id === selectedGenreId ? 'bold' : 'normal'}>
