@@ -8,20 +8,15 @@ import Loading from '@components/Blocks/Loading';
 import FeaturedMovie from './FeaturedMovie';
 import { useNavigate } from 'react-router-dom';
 import config from '@config/index';
+import CustomLoader from '@components/Blocks/CustomLoader';
 
 const { fallbackSrc, tmdbSrc } = config;
 
-const CustomLoader = () => (
-   <Stack px={4} py={4}>
-      <Loading />
-   </Stack>
-);
-
 const HomeSection: React.FC = () => {
-   const { data, isLoading, fetchNextPage, hasNextPage } = useMovies();
+   const { data, isLoading, fetchNextPage, hasNextPage, isFetching } = useMovies();
    const navigate = useNavigate();
 
-   if (isLoading) {
+   if (isLoading || isFetching) {
       return <MovieCardSkeleton />;
    }
 

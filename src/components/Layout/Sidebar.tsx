@@ -22,12 +22,12 @@ const Sidebar: React.FC = () => {
    const navigate = useNavigate();
 
    const handleCategoryClick = (id: string) => {
-      navigate('/');
+      navigate('/', { replace: true });
       setCategory(id);
    };
 
    const handleGenreClick = (id: string) => {
-      navigate('/');
+      navigate('/', { replace: true });
       setGenre(id);
    };
 

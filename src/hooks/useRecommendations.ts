@@ -1,17 +1,14 @@
 import { Movies } from '@config/types';
 import TmdbClient, { ApiResponse } from '@services/tmdb-client';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
-const useRecommendations = (id: number) => {
-    const tmdbClient = new TmdbClient<Movies>(`/movie/${id}/recommendations`);
+const useRecommendations = (id: any) => {
+   const tmdbClient = new TmdbClient<Movies>(`/movie/${id}/recommendations`);
 
-    return useInfiniteQuery<ApiResponse<Movies>, Error>({
-        queryKey: ['movie_recommendations', id],
-        queryFn: ({ pageParam = 1 }) => tmdbClient.getByIdWithApiResponse({ page: pageParam }),
-        getNextPageParam: (lastPage) => {
-            return lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined;
-        },
-    });
+   return useQuery<ApiResponse<Movies>, Error>({
+      queryKey: ['movie_recommendations', id],
+      queryFn: () => tmdbClient.getByIdWithApiResponse({ page: 1 }),
+   });
 };
 
 export default useRecommendations;

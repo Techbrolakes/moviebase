@@ -1,12 +1,12 @@
 import React from 'react';
 import HomeSection from '@components/Home/HomeSection';
-import { Box } from '@chakra-ui/react';
+import Layout from '@components/Layout';
 
 const HomePage: React.FC = () => {
    return (
-      <div>
+      <Layout>
          <HomeSection />
-      </div>
+      </Layout>
    );
 };
 
