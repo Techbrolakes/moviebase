@@ -28,7 +28,7 @@ const MovieDetails: React.FC = () => {
          </Button>
          <Stack spacing={20} px={[3, 6]}>
             <SimpleGrid columns={{ sm: 1, md: 2 }} px={8} spacing={'-10'}>
-               <Image width={'450px'} objectFit={'cover'} height={'530px'} borderRadius={30} src={`${tmdbSrc}${data?.poster_path}`} />
+               <Image width={'490px'} objectFit={'cover'} height={'530px'} borderRadius={10} src={`${tmdbSrc}${data?.poster_path}`} />
                <Stack mt={10} spacing={8}>
                   <Heading textStyle="h1">{data?.title}</Heading>
                   <Flex justify={'space-between'} align={'center'}>
