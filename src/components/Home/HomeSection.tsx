@@ -28,7 +28,7 @@ const HomeSection: React.FC = () => {
    }
 
    return (
-      <Stack py={20} spacing={8}>
+      <Stack py={'130px'} spacing={8}>
          <FeaturedMovie />
          <InfiniteScroll dataLength={data?.pages.length || 0} next={fetchNextPage} hasMore={!!hasNextPage} loader={<CustomLoader />} scrollableTarget="scrollableDiv">
             {data?.pages.map((page, index) => (
