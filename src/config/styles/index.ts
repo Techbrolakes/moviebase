@@ -1,3 +1,14 @@
+export const headerBoxStyles = {
+   position: 'fixed',
+   px: 8,
+   py: 4,
+   boxShadow: 'xl',
+   zIndex: 10,
+   borderBottom: '2px',
+   borderColor: '#7B7B7B',
+   w: ['100%', '100%', '100%', '82.5%'],
+};
+
 export const responsiveHeader = {
    fontSize: ['20px', '24px', '28px', '30px'],
    fontWeight: 'bold',

@@ -57,7 +57,7 @@ const Sidebar: React.FC = () => {
                   <ListItem key={value} cursor={'pointer'} onClick={() => handleCategoryClick(value)}>
                      <HStack>
                         <Image boxSize="25px" style={{ filter }} src={genresIcons[label.toLowerCase()]} alt="Dan Abramov" />
-                        <Button variant={'link'} sx={BtnStyles} fontWeight={value === selectedCategoryId ? 'bold' : 'normal'}>
+                        <Button variant={'link'} sx={BtnStyles} color={value === selectedCategoryId ? 'red.500' : 'white'}>
                            {label}
                         </Button>
                      </HStack>
@@ -75,7 +75,7 @@ const Sidebar: React.FC = () => {
                   <ListItem key={id} cursor={'pointer'} onClick={() => handleGenreClick(id)}>
                      <HStack>
                         <Image boxSize="25px" style={{ filter }} src={genresIcons[name.toLowerCase()]} alt="Dan Abramov" />
-                        <Button variant={'link'} sx={BtnStyles} fontWeight={id === selectedGenreId ? 'bold' : 'normal'}>
+                        <Button variant={'link'} sx={BtnStyles} color={id === selectedGenreId ? 'red.500' : 'white'}>
                            {name}
                         </Button>
                      </HStack>

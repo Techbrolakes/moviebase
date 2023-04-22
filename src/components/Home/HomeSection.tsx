@@ -17,16 +17,9 @@ const CustomLoader = () => (
 const HomeSection: React.FC = () => {
    const { data, isLoading, fetchNextPage, hasNextPage } = useMovies();
    const navigate = useNavigate();
-   const skeletons = [1, 2, 3, 4, 5, 6];
 
    if (isLoading) {
-      return (
-         <Stack spacing={4} px={4} py={20}>
-            <Loading />
-            <Loading />
-            <Loading />
-         </Stack>
-      );
+      return <MovieCardSkeleton />;
    }
 
    return (
@@ -37,18 +30,13 @@ const HomeSection: React.FC = () => {
                <Box key={index}>
                   <section>
                      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={20} padding="10px">
-                        {isLoading &&
-                           skeletons.map((skeleton) => (
-                              <MovieCardContainer key={skeleton}>
-                                 <MovieCardSkeleton />
-                              </MovieCardContainer>
-                           ))}
                         {page?.results.map(({ poster_path, id }) => (
                            <div key={id} onClick={() => navigate(`movie/${id}`)}>
                               <MovieCardContainer>
                                  <Image
+                                    cursor={'pointer'}
                                     w={'600px'}
-                                    shadow={'xl'}
+                                    boxShadow={'inner'}
                                     borderRadius={'10px'}
                                     h={'450px'}
                                     fallbackSrc="https://competent-fermi-0457c4.netlify.app/static/media/no_image.22d2aa4d.jpg"

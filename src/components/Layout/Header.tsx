@@ -1,23 +1,16 @@
 import React from 'react';
-import { Box, Flex, Input, MenuButton, MenuItem, MenuList, useColorModeValue, Button, Menu, InputGroup, InputLeftElement, FormControl } from '@chakra-ui/react';
+import { Box, Flex, Input, MenuButton, MenuItem, MenuList, useColorModeValue, Button, Menu, InputGroup, InputLeftElement, FormControl, Show, Hide, Stack } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import useMovieQueryStore from '@config/store';
 import ColorModeSwitch from '@components/Blocks/ColorModeSwitch';
+import config from '@config/index';
+import { headerBoxStyles } from '@config/styles';
 
-const sortOrders = [
-   { value: 'popularity.asc', label: 'Popularity (Low to High)' },
-   { value: 'popularity.desc', label: 'Popularity (High to Low)' },
-   { value: 'release_date.asc', label: 'Release Date (Old to New)' },
-   { value: 'release_date.desc', label: 'Release Date (New to Old)' },
-   { value: 'revenue.asc', label: 'Revenue (Low to High)' },
-   { value: 'revenue.desc', label: 'Revenue (High to Low)' },
-   { value: 'vote_average.asc', label: 'Rating (Low to High)' },
-   { value: 'vote_average.desc', label: 'Rating (High to Low)' },
-];
+const { sortOrders } = config;
 
 const Header: React.FC = () => {
-   const bg = useColorModeValue('#fff', '#000');
+   const bg = useColorModeValue('#1976D2', '#000');
    const setSortBy = useMovieQueryStore((state) => state.setSortBy);
    const setSearchText = useMovieQueryStore((state) => state.setSearchText);
    const navigate = useNavigate();
@@ -32,17 +25,28 @@ const Header: React.FC = () => {
    };
 
    return (
-      <Box position="fixed" px={8} py={4} boxShadow="xl" zIndex={10} borderBottom="2px" borderColor="#7B7B7B" bg={bg} w="82.55vw">
-         <Flex h="60px" gap={0} align="center" justify="space-between">
-            <ColorModeSwitch />
-            <FormControl w="60%">
+      <Stack spacing={4} bg={bg} sx={headerBoxStyles}>
+         <Hide above="md">
+            <FormControl w="80%" mx="auto">
                <InputGroup>
                   <InputLeftElement pointerEvents="none" />
-                  <Input type="text" placeholder="Search Movie" borderRadius={20} variant="filled" onChange={handleSearchInputChange} />
+                  <Input type="text" placeholder="Search Movie" focusBorderColor="white" borderRadius={20} variant="filled" onChange={handleSearchInputChange} />
                </InputGroup>
             </FormControl>
+         </Hide>
+
+         <Flex h="40px" align="center" justify="space-between">
+            <ColorModeSwitch />
+            <Show above="md">
+               <FormControl w="60%">
+                  <InputGroup>
+                     <InputLeftElement pointerEvents="none" />
+                     <Input type="text" placeholder="Search Movie" focusBorderColor="white" borderRadius={10} variant="filled" onChange={handleSearchInputChange} />
+                  </InputGroup>
+               </FormControl>
+            </Show>
             <Menu>
-               <MenuButton as={Button} rightIcon={<ChevronDownIcon />} variant="ghost">
+               <MenuButton as={Button} rightIcon={<ChevronDownIcon />} variant="solid">
                   Sort By
                </MenuButton>
                <MenuList>
@@ -54,7 +58,7 @@ const Header: React.FC = () => {
                </MenuList>
             </Menu>
          </Flex>
-      </Box>
+      </Stack>
    );
 };
 
