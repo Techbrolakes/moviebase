@@ -18,8 +18,8 @@ interface MovieQueryStore {
 const useMovieQueryStore = create<MovieQueryStore>((set) => ({
    filters: {},
    setSearchText: (searchText) => set(() => ({ filters: { searchText } })),
-   setGenre: (genre) => set((store) => ({ filters: { ...store.filters, genre, searchText: undefined, setCategory: undefined, category: undefined } })),
-   setCategory: (category) => set((store) => ({ filters: { ...store.filters, category, searchText: undefined, genre: undefined } })),
+   setGenre: (genre) => set((store) => ({ filters: { ...store.filters, genre, searchText: undefined, setCategory: undefined, category: undefined, sortBy: undefined } })),
+   setCategory: (category) => set((store) => ({ filters: { ...store.filters, category, searchText: undefined, genre: undefined, sortBy: undefined } })),
    setSortBy: (sortBy) =>
       set((store) => ({
          filters: { ...store.filters, sortBy, searchText: undefined, genre: undefined, category: undefined },
