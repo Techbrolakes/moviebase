@@ -1,6 +1,6 @@
 import { Box, Button, Flex, HStack, Heading, Image, SimpleGrid, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue } from '@chakra-ui/react';
 import useMovie from '@hooks/useMovie';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import config from '@config/index';
 import genresIcons from '@src/assets/genres';
@@ -16,11 +16,18 @@ const { fallbackSrc, tmdbSrc } = config;
 
 const MovieDetails: React.FC = () => {
    const { id } = useParams();
-   const { data, isLoading, isFetching } = useMovie(id);
+   const { data, isLoading, isFetching, refetch } = useMovie(id);
    const filter = useColorModeValue('none', 'invert(1)');
    const navigate = useNavigate();
 
+   useEffect(() => {
+      console.log('scrolling to top');
+      window.scrollTo(0, 0);
+      refetch();
+   }, [id]);
+
    if (data === undefined) return null;
+
    return (
       <Box>
          <Button mx={6} mb={16} px={6} variant={'solid'} onClick={() => navigate(-1)} leftIcon={<ArrowBackIcon />}>

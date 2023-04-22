@@ -21,6 +21,7 @@ const Header: React.FC = () => {
    };
 
    const handleSortBySelect = (order: any) => {
+      navigate('/');
       setSortBy(order.value);
    };
 
