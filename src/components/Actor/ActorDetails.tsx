@@ -5,7 +5,8 @@ import CustomLoader from '@components/Blocks/CustomLoader';
 import { Box, Button, SimpleGrid, Stack, Text, Heading, Flex, HStack, Image } from '@chakra-ui/react';
 import useActors from '@hooks/useActors';
 import config from '@config/index';
-import dayjs from 'dayjs';
+import ActorMovies from './ActorMovies';
+import useActorMovies from '@hooks/useActorMovies';
 
 const { fallbackSrc, tmdbSrc } = config;
 
@@ -13,6 +14,9 @@ const ActorDetails: React.FC = () => {
    const { id } = useParams();
    const navigate = useNavigate();
    const { data, isFetching, isLoading } = useActors(id);
+   const { data: actorMovies, isLoading: isLoad, isFetching: isFetch } = useActorMovies(data?.id);
+
+   if (isLoad || isLoading || isFetching || isFetch || !actorMovies) return <CustomLoader />;
 
    return (
       <Box>
@@ -37,6 +41,10 @@ const ActorDetails: React.FC = () => {
                </SimpleGrid>
             )}
          </Stack>
+
+         <Box mt={20}>
+            <ActorMovies actorMovies={actorMovies} />
+         </Box>
       </Box>
    );
 };

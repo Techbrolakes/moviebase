@@ -73,7 +73,7 @@ const MovieDetails: React.FC = () => {
                      <CastsTab data={data} />
                   </TabPanel>
                   <TabPanel>
-                     <RecommendedMovies id={id} />
+                     <RecommendedMovies key={data?.id} movies={data} />
                   </TabPanel>
                   <TabPanel>
                      <MovieImages data={data} />

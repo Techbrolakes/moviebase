@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import useRecommendations from '@hooks/useRecommendations';
 import MovieCardContainer from '@components/Blocks/MovieCardContainer';
 import { Box, Image, SimpleGrid, Stack } from '@chakra-ui/react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import config from '@config/index';
 import Loading from '@components/Blocks/Loading';
+import { MovieDetails } from '@config/types';
 
 const { fallbackSrc, tmdbSrc } = config;
 
@@ -17,15 +18,12 @@ const CustomLoader = () => (
 );
 
 interface IProps {
-   id: any;
+   movies?: MovieDetails;
 }
 
-const RecommendedMovies: React.FC<IProps> = ({ id }) => {
-   const { data, isFetching, isLoading } = useRecommendations(id);
-
-   useEffect(() => {
-      window.scrollTo(0, 0);
-   }, [id]);
+const RecommendedMovies: React.FC<IProps> = ({ movies }) => {
+   const { data, isFetching, isLoading } = useRecommendations(movies?.id);
+   const navigate = useNavigate();
 
    if (isFetching || isLoading) {
       <div>
@@ -43,7 +41,7 @@ const RecommendedMovies: React.FC<IProps> = ({ id }) => {
          <section>
             <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={12}>
                {data?.results.map(({ poster_path, id }) => (
-                  <Link key={id} to={`/movie/${id}`}>
+                  <div key={id} onClick={() => navigate(`/movie/${id}`, { replace: true })}>
                      <MovieCardContainer>
                         <Image
                            cursor={'pointer'}
@@ -56,7 +54,7 @@ const RecommendedMovies: React.FC<IProps> = ({ id }) => {
                            src={`${tmdbSrc}${poster_path}`}
                         />
                      </MovieCardContainer>
-                  </Link>
+                  </div>
                ))}
             </SimpleGrid>
          </section>
