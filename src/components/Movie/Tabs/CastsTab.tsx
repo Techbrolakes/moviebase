@@ -16,7 +16,7 @@ const CastsTab: React.FC<IProps> = ({ data }) => {
       <div>
          <SimpleGrid columns={{ sm: 2, md: 3, lg: 4, xl: 5 }} spacing={12} py={8}>
             {data?.credits.cast.map(({ original_name, profile_path, id, character }) => (
-               <Link key={id} to={`/movie/${id}`}>
+               <Link key={id} to={`/actor/${id}`}>
                   <MovieCardContainer>
                      <Stack spacing={4} boxShadow={'lg'} bg="#000" h={'350px'} w={'fit-content'}>
                         <Image width={'200px'} objectFit={'cover'} fallbackSrc={fallbackSrc} height={'200px'} src={`${tmdbSrc}${profile_path}`} />

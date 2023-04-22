@@ -1,5 +1,4 @@
 import { Box, Button, Flex, HStack, Heading, Image, SimpleGrid, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue } from '@chakra-ui/react';
-import MovieCardSkeleton from '@components/Blocks/MovieCardSkeleton';
 import useMovie from '@hooks/useMovie';
 import React from 'react';
 import { useParams } from 'react-router-dom';
@@ -32,7 +31,7 @@ const MovieDetails: React.FC = () => {
                <CustomLoader />
             ) : (
                <SimpleGrid columns={{ sm: 1, md: 2 }} px={2}>
-                  <Image width={'490px'} objectFit={'cover'} height={'530px'} borderRadius={10} src={`${tmdbSrc}${data?.poster_path}`} />
+                  <Image width={'490px'} objectFit={'cover'} height={'530px'} fallbackSrc={fallbackSrc} borderRadius={10} src={`${tmdbSrc}${data?.poster_path}`} />
                   <Stack mt={10} spacing={8}>
                      <Heading textStyle="h1">{data?.title}</Heading>
                      <Flex justify={'space-between'} align={'center'}>

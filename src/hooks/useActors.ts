@@ -3,7 +3,7 @@ import TmdbClient from '@services/tmdb-client';
 import { useQuery } from '@tanstack/react-query';
 import ms from 'ms';
 
-const useActors = (id: number) => {
+const useActors = (id: any) => {
    const tmdbClient = new TmdbClient<ActorDetails>(`person/${id}`);
 
    return useQuery({

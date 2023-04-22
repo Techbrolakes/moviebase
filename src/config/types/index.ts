@@ -85,6 +85,7 @@ export interface ActorDetails {
    name: string;
    place_of_birth: string;
    popularity: number;
+   birthday: Date;
    profile_path: string;
 }
 
