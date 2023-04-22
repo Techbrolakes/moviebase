@@ -5,7 +5,7 @@ const MovieCardSkeleton = () => {
 
    return (
       <Stack pb={8} pt={['150px', '130px']} px={[3, 5]} spacing={8}>
-         <Card bg="black">
+         <Card bg="#151922">
             <Skeleton height="300px" />
             <CardBody>
                <SkeletonText noOfLines={4} spacing="4" />
@@ -14,7 +14,7 @@ const MovieCardSkeleton = () => {
 
          <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={10} padding={['20px', '10px']}>
             {skeletons.map((skeleton) => (
-               <Card bg="black" boxShadow={'lg'} key={skeleton}>
+               <Card bg="#151922" boxShadow={'lg'} key={skeleton}>
                   <Skeleton height="250px" />
                   <CardBody>
                      <SkeletonText noOfLines={2} spacing="2" />

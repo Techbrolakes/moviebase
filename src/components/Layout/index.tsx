@@ -5,7 +5,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 
 const Layout: React.FC = () => {
-   const bg = useColorModeValue('#fafafa', '#090909');
+   const bg = useColorModeValue(' #F5F5F5', '#121212');
 
    return (
       <Box height="100vh" bgColor={bg}>

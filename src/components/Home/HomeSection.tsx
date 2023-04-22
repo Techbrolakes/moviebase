@@ -7,6 +7,9 @@ import MovieCardSkeleton from '@components/Blocks/MovieCardSkeleton';
 import Loading from '@components/Blocks/Loading';
 import FeaturedMovie from './FeaturedMovie';
 import { useNavigate } from 'react-router-dom';
+import config from '@config/index';
+
+const { fallbackSrc, tmdbSrc } = config;
 
 const CustomLoader = () => (
    <Stack px={4} py={4}>
@@ -29,7 +32,7 @@ const HomeSection: React.FC = () => {
             {data?.pages.map((page, index) => (
                <Box key={index}>
                   <section>
-                     <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={20} padding="10px">
+                     <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={12} padding="25px">
                         {page?.results.map(({ poster_path, id }) => (
                            <div key={id} onClick={() => navigate(`movie/${id}`)}>
                               <MovieCardContainer>
@@ -39,9 +42,9 @@ const HomeSection: React.FC = () => {
                                     boxShadow={'inner'}
                                     borderRadius={'10px'}
                                     h={'450px'}
-                                    fallbackSrc="https://competent-fermi-0457c4.netlify.app/static/media/no_image.22d2aa4d.jpg"
+                                    fallbackSrc={fallbackSrc}
                                     objectFit={'cover'}
-                                    src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : 'https://www.fillmurray.com/200/300'}
+                                    src={`${tmdbSrc}${poster_path}`}
                                  />
                               </MovieCardContainer>
                            </div>

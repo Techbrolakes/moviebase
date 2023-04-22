@@ -10,7 +10,7 @@ import { headerBoxStyles } from '@config/styles';
 const { sortOrders } = config;
 
 const Header: React.FC = () => {
-   const bg = useColorModeValue('#1976D2', '#000');
+   const bg = useColorModeValue('#1976D2', '#121212');
    const setSortBy = useMovieQueryStore((state) => state.setSortBy);
    const setSearchText = useMovieQueryStore((state) => state.setSearchText);
    const navigate = useNavigate();

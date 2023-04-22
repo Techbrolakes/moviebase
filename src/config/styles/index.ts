@@ -30,6 +30,7 @@ export const featuresBoxStyles = {
    w: '97.4%',
    mx: 'auto',
    borderRadius: '15px',
+   cursor: 'pointer',
 };
 
 export const overlayStyles = {
@@ -39,5 +40,15 @@ export const overlayStyles = {
    width: '100%',
    height: '100%',
    bg: 'rgba(0, 0, 0, 0.7)',
+   borderRadius: '10px',
+};
+
+export const movieDetailsOverlay = {
+   position: 'absolute',
+   top: 2,
+   left: 0,
+   width: '100%',
+   height: '100%',
+   bg: 'rgba(0, 0, 0, 0.4)',
    borderRadius: '10px',
 };
