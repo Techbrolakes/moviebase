@@ -1,6 +1,6 @@
 import { Box, Button, Flex, HStack, Heading, Image, SimpleGrid, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue } from '@chakra-ui/react';
 import useMovie from '@hooks/useMovie';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import config from '@config/index';
 import genresIcons from '@src/assets/genres';
@@ -19,12 +19,18 @@ const MovieDetails: React.FC = () => {
    const { data, isLoading, isFetching, refetch } = useMovie(id);
    const filter = useColorModeValue('none', 'invert(1)');
    const navigate = useNavigate();
+   const [Loading, setLoading] = useState(false);
 
    useEffect(() => {
-      console.log('scrolling to top');
-      window.scrollTo(0, 0);
+      setLoading(true);
+
+      setTimeout(() => {
+         setLoading(false);
+      }, 1500);
       refetch();
    }, [id]);
+
+   if (Loading) return <CustomLoader />;
 
    if (data === undefined) return null;
 
