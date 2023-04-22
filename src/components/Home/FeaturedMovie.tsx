@@ -11,14 +11,14 @@ const FeaturedMovie: React.FC = () => {
          w={'1200px'}
          borderRadius={'10px'}
          mx={'auto'}
-         bgImage={`https://image.tmdb.org/t/p/original/${data?.pages[0].results[0].backdrop_path}`}
+         bgImage={`https://image.tmdb.org/t/p/original/${data?.pages[0]?.results[0]?.backdrop_path}`}
          bgRepeat={'no-repeat'}
          bgSize={'cover'}
          bgPosition={'center'}
          position="relative"
       >
          <Box position="absolute" top="0" left="0" w="100%" h="100%" bg="rgba(0, 0, 0, 0.7)" borderRadius={'10px'} />
-         <Stack spacing={4} position={'absolute'} bottom={10} px={4}>
+         <Stack spacing={4} position={'absolute'} bottom={10} px={4} color={'white'}>
             <Text fontSize={'xl'} fontWeight={'semibold'}>
                {data?.pages[0].results[0].title}
             </Text>

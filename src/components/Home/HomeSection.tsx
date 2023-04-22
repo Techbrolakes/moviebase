@@ -48,6 +48,7 @@ const HomeSection: React.FC = () => {
                                  shadow={'xl'}
                                  borderRadius={'10px'}
                                  h={'450px'}
+                                 fallbackSrc="https://competent-fermi-0457c4.netlify.app/static/media/no_image.22d2aa4d.jpg"
                                  objectFit={'cover'}
                                  src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : 'https://www.fillmurray.com/200/300'}
                               />
