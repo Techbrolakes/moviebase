@@ -1,14 +1,29 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Button } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 
-const ScrollToTop = () => {
-   const { pathname } = useLocation();
+const ScrollToTopButton = () => {
+   const [showButton, setShowButton] = useState(false);
 
    useEffect(() => {
-      window.scrollTo(0, 0);
-   }, [pathname]);
+      const handleScroll = () => {
+         const scrollY = window.scrollY;
+         setShowButton(scrollY > 100);
+      };
 
-   return null;
+      window.addEventListener('scroll', handleScroll);
+
+      return () => window.removeEventListener('scroll', handleScroll);
+   }, []);
+
+   const handleClick = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+   };
+
+   return (
+      <Button onClick={handleClick} position="fixed" bottom="4" right="4" display={showButton ? 'block' : 'none'}>
+         Scroll to Top
+      </Button>
+   );
 };
 
-export default ScrollToTop;
+export default ScrollToTopButton;

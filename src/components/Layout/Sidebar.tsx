@@ -44,13 +44,13 @@ const Sidebar: React.FC = () => {
       <Stack py={4} spacing={6}>
          <div>
             <Heading mb={4} fontSize={'2xl'} textAlign={'center'}>
-               <Image width={'150px'} objectFit={'contain'} src={logo} alt="logo" mx={'auto'} />
+               <Image width={'150px'} objectFit={'contain'} src={logo} alt="logo" mx={['0', 'auto']} />
             </Heading>
             <Divider />
          </div>
 
          {/* CATEGORY LISTS */}
-         <Stack spacing={6} px={4}>
+         <Stack spacing={6} px={[0, 2, 4]}>
             <Text fontSize={'md'}>Categories</Text>
             <List spacing={8}>
                {categories.map(({ label, value }) => (
@@ -68,7 +68,7 @@ const Sidebar: React.FC = () => {
          <Divider />
 
          {/* GENRES LISTS */}
-         <Stack spacing={6} px={4}>
+         <Stack spacing={6} px={[0, 2, 4]}>
             <Text fontSize={'md'}>Genres</Text>
             <List spacing={8}>
                {data?.genres.map(({ name, id }) => (

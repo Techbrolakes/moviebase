@@ -1,5 +1,5 @@
 import { Box, Grid, GridItem, Show, useColorModeValue } from '@chakra-ui/react';
-import ScrollToTop from '@components/Blocks/ScrollToTop';
+import ScrollToTopButton from '@components/Blocks/ScrollToTop';
 import Header from '@components/Layout/Header';
 import Sidebar from '@components/Layout/Sidebar';
 import React from 'react';
@@ -12,7 +12,6 @@ const Layout: React.FC<IProps> = ({ children }) => {
 
    return (
       <Box bgColor={bg}>
-         <ScrollToTop />
          <Grid templateAreas={{ base: `"main"`, lg: `"aside main"` }} templateColumns={{ base: '1fr', lg: '250px 1fr' }} height="100%">
             <Show above="lg">
                <GridItem overflowY="auto" h="100vh">
@@ -22,7 +21,11 @@ const Layout: React.FC<IProps> = ({ children }) => {
             <GridItem>
                <Box overflowY="auto" h="calc(100vh - 2px)" id="scrollableDiv">
                   <Header />
-                  <div>{children}</div>
+
+                  <div>
+                     {children}
+                     <ScrollToTopButton />
+                  </div>
                </Box>
             </GridItem>
          </Grid>

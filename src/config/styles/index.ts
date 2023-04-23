@@ -17,7 +17,7 @@ export const responsiveHeader = {
 };
 
 export const responsiveText = {
-   fontSize: ['10px', '12px', '14px', '15px'],
+   fontSize: ['12px', '12px', '14px', '15px'],
    lineHeight: '1.75',
    letterSpacing: '0.2px',
 };
@@ -29,7 +29,7 @@ export const featuresBoxStyles = {
    height: ['400px', '500px'],
    w: '97.4%',
    mx: 'auto',
-   borderRadius: '15px',
+   borderRadius: '10px',
    cursor: 'pointer',
 };
 
