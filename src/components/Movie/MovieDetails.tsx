@@ -1,4 +1,24 @@
-import { Box, Button, Flex, HStack, Heading, Image, SimpleGrid, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue } from '@chakra-ui/react';
+import {
+   Box,
+   Button,
+   Flex,
+   HStack,
+   Heading,
+   Image,
+   SimpleGrid,
+   Stack,
+   Tab,
+   TabList,
+   TabPanel,
+   TabPanels,
+   Tabs,
+   Text,
+   useColorModeValue,
+   useDisclosure,
+   Modal,
+   ModalOverlay,
+   ModalContent,
+} from '@chakra-ui/react';
 import useMovie from '@hooks/useMovie';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -11,6 +31,7 @@ import RecommendedMovies from './Tabs/RecommendedMovies';
 import CustomLoader from '@components/Blocks/CustomLoader';
 import CastsTab from './Tabs/CastsTab';
 import MovieImages from './Tabs/MovieImages';
+import { FaPlay } from 'react-icons/fa';
 
 const { fallbackSrc, tmdbSrc } = config;
 
@@ -20,6 +41,8 @@ const MovieDetails: React.FC = () => {
    const filter = useColorModeValue('none', 'invert(1)');
    const navigate = useNavigate();
    const [Loading, setLoading] = useState(false);
+   const { isOpen, onOpen, onClose } = useDisclosure();
+   const trailer = data?.videos?.results.find((video) => video.type === 'Trailer');
 
    useEffect(() => {
       setLoading(true);
@@ -70,6 +93,10 @@ const MovieDetails: React.FC = () => {
                            </HStack>
                         ))}
                      </Flex>
+                     <HStack cursor={'pointer'} onClick={onOpen}>
+                        <FaPlay color="#fff" />
+                        <Text textStyle="p">Play Trailer</Text>
+                     </HStack>
                   </Stack>
                </SimpleGrid>
             )}
@@ -94,6 +121,13 @@ const MovieDetails: React.FC = () => {
                </TabPanels>
             </Tabs>
          </Stack>
+
+         <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+               <iframe title="Trailer" src={`https://www.youtube.com/embed/${trailer?.key}`} height={'400px'} width={'700px'} allow="autoplay" allowFullScreen />
+            </ModalContent>
+         </Modal>
       </Box>
    );
 };

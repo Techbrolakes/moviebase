@@ -70,6 +70,19 @@ export interface MovieDetails {
          },
       ];
    };
+   videos: {
+      results: [
+         {
+            name: string;
+            key: string;
+            site: string;
+            size: number;
+            type: string;
+            official: boolean;
+            published_at: Date;
+         },
+      ];
+   };
 }
 
 export interface ActorDetails {
