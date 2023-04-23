@@ -1,6 +1,7 @@
 import { Avatar, Center, Image, SimpleGrid, Stack, Text, VStack } from '@chakra-ui/react';
 import MovieCardContainer from '@components/Blocks/MovieCardContainer';
 import config from '@config/index';
+import { responsiveText } from '@config/styles';
 import { MovieDetails } from '@config/types';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -14,16 +15,16 @@ interface IProps {
 const CastsTab: React.FC<IProps> = ({ data }) => {
    return (
       <div>
-         <SimpleGrid columns={{ sm: 2, md: 3, lg: 4, xl: 5 }} spacing={12} py={8}>
+         <SimpleGrid columns={{ sm: 2, md: 3, lg: 4, xl: 4 }} spacing={8} py={8}>
             {data?.credits.cast.map(({ original_name, profile_path, id, character }) => (
                <Link key={id} to={`/actor/${id}`}>
                   <MovieCardContainer>
-                     <Stack spacing={4} boxShadow={'lg'} bg="#000" h={'350px'} w={'fit-content'}>
-                        <Image width={'200px'} objectFit={'cover'} fallbackSrc={fallbackSrc} height={'200px'} src={`${tmdbSrc}${profile_path}`} />
+                     <Stack spacing={4} bg="#000" h={'fit-content'} w={'fit-content'} pb={4}>
+                        <Image width={['500px', '400px']} objectFit={'cover'} fallbackSrc={fallbackSrc} height={['300px', '250px']} src={`${tmdbSrc}${profile_path}`} />
                         <VStack py={2} spacing={2}>
-                           <Text textStyle="p">{original_name}</Text>
+                           <Text sx={responsiveText}>{original_name}</Text>
                            <span>as</span>
-                           <Text textAlign={'center'} textStyle="p">
+                           <Text textAlign={'center'} sx={responsiveText}>
                               {character}
                            </Text>
                         </VStack>

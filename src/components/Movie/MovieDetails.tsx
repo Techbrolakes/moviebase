@@ -18,6 +18,8 @@ import {
    Modal,
    ModalOverlay,
    ModalContent,
+   Show,
+   Hide,
 } from '@chakra-ui/react';
 import useMovie from '@hooks/useMovie';
 import React, { useEffect, useState } from 'react';
@@ -32,6 +34,7 @@ import CustomLoader from '@components/Blocks/CustomLoader';
 import CastsTab from './Tabs/CastsTab';
 import MovieImages from './Tabs/MovieImages';
 import { FaPlay } from 'react-icons/fa';
+import { responsiveText } from '@config/styles';
 
 const { fallbackSrc, tmdbSrc } = config;
 
@@ -59,33 +62,41 @@ const MovieDetails: React.FC = () => {
 
    return (
       <Box>
-         <Button mx={6} mb={16} px={6} variant={'solid'} onClick={() => navigate(-1)} leftIcon={<ArrowBackIcon />}>
+         <Button mx={[2, 6]} mb={16} px={6} variant={'solid'} onClick={() => navigate(-1)} leftIcon={<ArrowBackIcon />}>
             Back
          </Button>
-         <Stack spacing={20} px={[3, 6]}>
+
+         <Stack spacing={2} px={[0, 2, 6]}>
             {isFetching || isLoading || data === undefined ? (
                <CustomLoader />
             ) : (
-               <SimpleGrid columns={{ sm: 1, md: 2 }} px={2}>
-                  <Image width={'490px'} objectFit={'cover'} height={'530px'} fallbackSrc={fallbackSrc} borderRadius={10} src={`${tmdbSrc}${data?.poster_path}`} />
-                  <Stack mt={10} spacing={8}>
+               <SimpleGrid columns={{ sm: 1, md: 2 }} px={[0, 2]} spacing={[2, 4, 8]}>
+                  <Image
+                     width={['520px', '100%', '520x']}
+                     objectFit={'contain'}
+                     height={['100%', '100%', '80%']}
+                     fallbackSrc={fallbackSrc}
+                     borderRadius={[0, 0, 2]}
+                     src={`${tmdbSrc}${data?.poster_path}`}
+                  />
+                  <Stack mt={10} spacing={12}>
                      <Heading textStyle="h1">{data?.title}</Heading>
                      <Flex justify={'space-between'} align={'center'}>
                         <Flex align={'center'} gap={2}>
                            <ReactStarRatings rating={data?.vote_average / 2} starRatedColor="#FFD700" numberOfStars={5} starDimension="20px" starSpacing="0px" />
-                           <Text mt={2} textStyle="p">
+                           <Text mt={2} sx={responsiveText}>
                               {data?.vote_average}
                            </Text>
                         </Flex>
-                        <Text mr={4} textStyle="p">
+                        <Text mr={4} sx={responsiveText}>
                            Runtime : {data?.runtime} Min
                         </Text>
                      </Flex>
-                     <Stack spacing={2}>
+                     <Stack spacing={4}>
                         <Heading fontSize={'20px'}>Overview</Heading>
-                        <Text textStyle="p">{data?.overview}</Text>
+                        <Text sx={responsiveText}>{data?.overview}</Text>
                      </Stack>
-                     <Flex align={'center'} gap={10}>
+                     <Flex align={'center'} gap={10} wrap={'wrap'}>
                         {data?.genres.map(({ id, name }) => (
                            <HStack key={id} spacing={2}>
                               <Image boxSize="25px" style={{ filter }} src={genresIcons[name.toLowerCase()]} alt="Dan Abramov" />
@@ -93,19 +104,21 @@ const MovieDetails: React.FC = () => {
                            </HStack>
                         ))}
                      </Flex>
-                     <HStack cursor={'pointer'} onClick={onOpen}>
-                        <FaPlay color="#fff" />
-                        <Text textStyle="p">Play Trailer</Text>
-                     </HStack>
+                     <Button onClick={onOpen} p={4}>
+                        <HStack>
+                           <FaPlay color="#fff" />
+                           <Text sx={responsiveText}>Play Trailer</Text>
+                        </HStack>
+                     </Button>
                   </Stack>
                </SimpleGrid>
             )}
 
-            <Tabs isFitted variant="enclosed">
+            <Tabs pt={[20, 20, 0]} isFitted variant="enclosed">
                <TabList mb="1em">
-                  <Tab>Movie Casts</Tab>
-                  <Tab>Recommended Movies</Tab>
-                  <Tab>Images from {data?.title}</Tab>
+                  <Tab sx={responsiveText}>Movie Casts</Tab>
+                  <Tab sx={responsiveText}>Recommended Movies</Tab>
+                  <Tab sx={responsiveText}>Images from {data?.title}</Tab>
                </TabList>
 
                <TabPanels>
@@ -124,8 +137,13 @@ const MovieDetails: React.FC = () => {
 
          <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <ModalContent>
-               <iframe title="Trailer" src={`https://www.youtube.com/embed/${trailer?.key}`} height={'400px'} width={'700px'} allow="autoplay" allowFullScreen />
+            <ModalContent mx={0}>
+               <Show above="lg">
+                  <iframe title="Trailer" src={`https://www.youtube.com/embed/${trailer?.key}`} height={'400px'} width={'700px'} allow="autoplay" allowFullScreen />
+               </Show>
+               <Hide above="lg">
+                  <iframe title="Trailer" src={`https://www.youtube.com/embed/${trailer?.key}`} height={'300px'} width={'500px'} allow="autoplay" allowFullScreen />
+               </Hide>
             </ModalContent>
          </Modal>
       </Box>

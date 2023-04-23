@@ -13,9 +13,9 @@ interface IProps {
 
 const MovieImages: React.FC<IProps> = ({ data }) => {
    return (
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={12}>
+      <SimpleGrid columns={{ sm: 2, md: 2, lg: 3, xl: 4 }} spacing={12}>
          {data?.images?.backdrops.map(({ file_path }) => (
-            <Image w={'400px'} h={'300px'} fallbackSrc={fallbackSrc} objectFit={'cover'} src={`${tmdbSrc}${file_path}`} />
+            <Image w={'100%'} h={'100%'} fallbackSrc={fallbackSrc} objectFit={'contain'} src={`${tmdbSrc}${file_path}`} />
          ))}
       </SimpleGrid>
    );

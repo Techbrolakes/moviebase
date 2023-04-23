@@ -11,31 +11,30 @@ const { fallbackSrc, tmdbSrc } = config;
 
 interface IProps {
    actorMovies?: ApiResponse<Movies>;
+   name?: string;
 }
 
-const ActorMovies: React.FC<IProps> = ({ actorMovies }) => {
+const ActorMovies: React.FC<IProps> = ({ actorMovies, name }) => {
    const navigate = useNavigate();
 
    return (
       <Box>
          <Center>
-            <Heading mb={16} textStyle="h1">
-               Movies
+            <Heading mb={[6, 7, 8]} textStyle="h1">
+               {name} Movies
             </Heading>
          </Center>
-         <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={12} padding="25px">
+         <SimpleGrid columns={{ sm: 2, md: 2, lg: 3, xl: 4 }} spacing={12} padding="25px">
             {actorMovies?.results?.map(({ poster_path, id, vote_average }) => (
                <div key={id} onClick={() => navigate(`/movie/${id}`)}>
                   <MovieCardContainer>
                      <Stack spacing={2} boxShadow={'2xl'}>
                         <Image
                            cursor={'pointer'}
-                           w={'600px'}
-                           boxShadow={'inner'}
-                           borderRadius={'10px'}
-                           h={'450px'}
+                           w={'100%'}
+                           h={['550px', '350px', '350px', '400px']}
                            fallbackSrc={fallbackSrc}
-                           objectFit={'cover'}
+                           objectFit={['cover', 'contain', 'contain', 'contain']}
                            src={`${tmdbSrc}${poster_path}`}
                         />
                         <Center>

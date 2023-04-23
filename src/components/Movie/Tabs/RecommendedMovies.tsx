@@ -37,18 +37,16 @@ const RecommendedMovies: React.FC<IProps> = ({ movies }) => {
    return (
       <>
          <section>
-            <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={12}>
+            <SimpleGrid columns={{ sm: 2, md: 2, lg: 3, xl: 4 }} spacing={12}>
                {data?.results.map(({ poster_path, id }) => (
                   <div key={id} onClick={() => navigate(`/movie/${id}`, { replace: true })}>
                      <MovieCardContainer>
                         <Image
                            cursor={'pointer'}
-                           w={'600px'}
-                           boxShadow={'inner'}
-                           borderRadius={'10px'}
-                           h={'450px'}
+                           w={'100%'}
+                           h={['550px', '350px', '350px', '400px']}
                            fallbackSrc={fallbackSrc}
-                           objectFit={'cover'}
+                           objectFit={['cover', 'contain', 'contain', 'contain']}
                            src={`${tmdbSrc}${poster_path}`}
                         />
                      </MovieCardContainer>

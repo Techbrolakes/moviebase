@@ -7,6 +7,7 @@ import useActors from '@hooks/useActors';
 import config from '@config/index';
 import ActorMovies from './ActorMovies';
 import useActorMovies from '@hooks/useActorMovies';
+import { responsiveText } from '@config/styles';
 
 const { fallbackSrc, tmdbSrc } = config;
 
@@ -20,22 +21,29 @@ const ActorDetails: React.FC = () => {
 
    return (
       <Box>
-         <Button mx={6} mb={16} px={6} variant={'solid'} onClick={() => navigate(-1)} leftIcon={<ArrowBackIcon />}>
+         <Button mx={6} mb={16} px={2} variant={'solid'} onClick={() => navigate(-1)} leftIcon={<ArrowBackIcon />}>
             Back
          </Button>
-         <Stack spacing={20} px={[3, 6]}>
+         <Stack spacing={20} px={[0, 6]}>
             {isFetching || isLoading || data === undefined ? (
                <CustomLoader />
             ) : (
-               <SimpleGrid columns={{ sm: 1, md: 2 }} px={2}>
-                  <Image width={'490px'} objectFit={'cover'} height={'530px'} fallbackSrc={fallbackSrc} borderRadius={10} src={`${tmdbSrc}${data?.profile_path}`} />
+               <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={3}>
+                  <Image
+                     width={['520px', '100%', '520x']}
+                     objectFit={'contain'}
+                     height={['100%', '100%', '80%']}
+                     fallbackSrc={fallbackSrc}
+                     borderRadius={[0, 0, 2]}
+                     src={`${tmdbSrc}${data?.profile_path}`}
+                  />
 
                   <Stack spacing={8}>
                      <Heading textStyle="h1">{data?.name}</Heading>
-                     {data?.birthday && <Text textStyle="p">Born: {new Date(data?.birthday).toDateString()}</Text>}{' '}
-                     <Stack spacing={2}>
+                     {data?.birthday && <Text sx={responsiveText}>Born: {new Date(data?.birthday).toDateString()}</Text>}{' '}
+                     <Stack spacing={6}>
                         <Heading fontSize={'20px'}>Biography</Heading>
-                        <Text textStyle="p">{data?.biography}</Text>
+                        <Text sx={responsiveText}>{data?.biography}</Text>
                      </Stack>
                   </Stack>
                </SimpleGrid>
@@ -43,7 +51,7 @@ const ActorDetails: React.FC = () => {
          </Stack>
 
          <Box mt={20}>
-            <ActorMovies actorMovies={actorMovies} />
+            <ActorMovies actorMovies={actorMovies} name={data?.name} />
          </Box>
       </Box>
    );

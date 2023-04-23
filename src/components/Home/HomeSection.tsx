@@ -47,7 +47,7 @@ const HomeSection: React.FC = () => {
                                  <Stack spacing={4} w={'fit-content'}>
                                     <Image
                                        cursor={'pointer'}
-                                       w={['100%', '100%', '100%', '100%']}
+                                       w={'100%'}
                                        h={['550px', '350px', '350px', '400px']}
                                        fallbackSrc={fallbackSrc}
                                        objectFit={['cover', 'contain', 'contain', 'contain']}
