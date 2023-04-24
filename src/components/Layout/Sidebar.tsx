@@ -8,8 +8,6 @@ import Loading from '@components/Blocks/Loading';
 import { useNavigate } from 'react-router-dom';
 
 const { BtnStyles, categories } = SCREEN_TEXTS;
-const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
-const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
 
 const Sidebar: React.FC = () => {
    const { data, isLoading } = useGenres();
@@ -18,7 +16,8 @@ const Sidebar: React.FC = () => {
    const selectedGenreId = useMovieQueryStore((s) => s.filters.genre);
    const selectedCategoryId = useMovieQueryStore((s) => s.filters.category);
    const filter = useColorModeValue('none', 'invert(1)');
-   const logo = useColorModeValue(redLogo, blueLogo);
+   const logo = useColorModeValue('#1976D2', '#dc1a28');
+   const link = useColorModeValue('#121212', '#fff');
    const navigate = useNavigate();
 
    const handleCategoryClick = (id: string) => {
@@ -43,8 +42,8 @@ const Sidebar: React.FC = () => {
    return (
       <Stack py={4} spacing={6}>
          <div>
-            <Heading mb={4} fontSize={'2xl'} textAlign={'center'}>
-               <Image width={'150px'} objectFit={'contain'} src={logo} alt="logo" mx={['0', 'auto']} />
+            <Heading cursor={'pointer'} onClick={() => navigate('/')} fontWeight={'bold'} fontFamily={'Cabin'} color={logo} mb={4} fontSize={'4xl'} px={2}>
+               Moviebase
             </Heading>
             <Divider />
          </div>
@@ -57,7 +56,7 @@ const Sidebar: React.FC = () => {
                   <ListItem key={value} cursor={'pointer'} onClick={() => handleCategoryClick(value)}>
                      <HStack>
                         <Image boxSize="25px" style={{ filter }} src={genresIcons[label.toLowerCase()]} alt="Dan Abramov" />
-                        <Button variant={'link'} sx={BtnStyles} color={value === selectedCategoryId ? 'red.500' : 'white'}>
+                        <Button variant={'link'} sx={BtnStyles} color={value === selectedCategoryId ? 'red.500' : `${link}`}>
                            {label}
                         </Button>
                      </HStack>
@@ -75,7 +74,7 @@ const Sidebar: React.FC = () => {
                   <ListItem key={id} cursor={'pointer'} onClick={() => handleGenreClick(id)}>
                      <HStack>
                         <Image boxSize="25px" style={{ filter }} src={genresIcons[name.toLowerCase()]} alt="Dan Abramov" />
-                        <Button variant={'link'} sx={BtnStyles} color={id === selectedGenreId ? 'red.500' : 'white'}>
+                        <Button variant={'link'} sx={BtnStyles} color={id === selectedGenreId ? 'red.500' : `${link}`}>
                            {name}
                         </Button>
                      </HStack>

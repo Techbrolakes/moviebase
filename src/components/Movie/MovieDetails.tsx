@@ -35,6 +35,7 @@ import CastsTab from './Tabs/CastsTab';
 import MovieImages from './Tabs/MovieImages';
 import { FaPlay } from 'react-icons/fa';
 import { responsiveText } from '@config/styles';
+import AnimationLoader from '@components/Blocks/AnimationLoader';
 
 const { fallbackSrc, tmdbSrc } = config;
 
@@ -42,6 +43,8 @@ const MovieDetails: React.FC = () => {
    const { id } = useParams();
    const { data, isLoading, isFetching, refetch } = useMovie(id);
    const filter = useColorModeValue('none', 'invert(1)');
+   const btnbg = useColorModeValue('#121212', '#fff');
+   const btnColor = useColorModeValue('#fff', '#121212');
    const navigate = useNavigate();
    const [Loading, setLoading] = useState(false);
    const { isOpen, onOpen, onClose } = useDisclosure();
@@ -56,13 +59,13 @@ const MovieDetails: React.FC = () => {
       refetch();
    }, [id]);
 
-   if (Loading) return <CustomLoader />;
+   if (Loading) return <AnimationLoader />;
 
    if (data === undefined) return null;
 
    return (
       <Box>
-         <Button mx={[2, 6]} mb={16} px={6} variant={'solid'} onClick={() => navigate(-1)} leftIcon={<ArrowBackIcon />}>
+         <Button bg={btnbg} color={btnColor} mx={[2, 6]} mb={16} px={6} variant={'solid'} onClick={() => navigate(-1)} leftIcon={<ArrowBackIcon />}>
             Back
          </Button>
 
@@ -104,9 +107,9 @@ const MovieDetails: React.FC = () => {
                            </HStack>
                         ))}
                      </Flex>
-                     <Button onClick={onOpen} p={4}>
+                     <Button bg={btnbg} color={btnColor} onClick={onOpen} p={4}>
                         <HStack>
-                           <FaPlay color="#fff" />
+                           <FaPlay />
                            <Text sx={responsiveText}>Play Trailer</Text>
                         </HStack>
                      </Button>

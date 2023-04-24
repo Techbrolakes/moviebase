@@ -12,7 +12,6 @@ import CustomLoader from '@components/Blocks/CustomLoader';
 import { responsiveHeader } from '@config/styles';
 import useMovieQueryStore from '@config/store';
 import useGenres from '@hooks/useGenres';
-import ScrollToTop from '@components/Blocks/ScrollToTop';
 
 const { fallbackSrc, tmdbSrc } = config;
 
@@ -30,7 +29,6 @@ const HomeSection: React.FC = () => {
    return (
       <Stack pb={8} pt={['120px', '120px', '130px']} spacing={8}>
          <FeaturedMovie />
-         <ScrollToTop />
          <Box>
             {ShowGenre && (
                <Text px={7} mb={2} sx={responsiveHeader}>
@@ -44,19 +42,21 @@ const HomeSection: React.FC = () => {
                         <SimpleGrid columns={{ sm: 2, md: 2, lg: 3, xl: 4 }} spacing={[16, 12]} padding={['10px', '25px']}>
                            {page?.results?.map(({ poster_path, id, vote_average }) => (
                               <div key={id} onClick={() => navigate(`movie/${id}`)}>
-                                 <Stack spacing={4} w={'fit-content'}>
-                                    <Image
-                                       cursor={'pointer'}
-                                       w={'100%'}
-                                       h={['550px', '350px', '350px', '400px']}
-                                       fallbackSrc={fallbackSrc}
-                                       objectFit={['cover', 'contain', 'contain', 'contain']}
-                                       src={`${tmdbSrc}${poster_path}`}
-                                    />
-                                    <Center cursor={'pointer'}>
-                                       <ReactStarRatings rating={vote_average / 2} starRatedColor="#FAAF00" numberOfStars={5} starDimension="25px" starSpacing="2px" />
-                                    </Center>
-                                 </Stack>
+                                 <MovieCardContainer>
+                                    <Stack spacing={4} w={'fit-content'}>
+                                       <Image
+                                          cursor={'pointer'}
+                                          w={'100%'}
+                                          h={['550px', '350px', '350px', '400px']}
+                                          fallbackSrc={fallbackSrc}
+                                          objectFit={['cover', 'contain', 'contain', 'contain']}
+                                          src={`${tmdbSrc}${poster_path}`}
+                                       />
+                                       <Center cursor={'pointer'}>
+                                          <ReactStarRatings rating={vote_average / 2} starRatedColor="#FAAF00" numberOfStars={5} starDimension="25px" starSpacing="2px" />
+                                       </Center>
+                                    </Stack>
+                                 </MovieCardContainer>
                               </div>
                            ))}
                         </SimpleGrid>

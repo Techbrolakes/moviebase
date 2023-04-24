@@ -1,5 +1,4 @@
 import { Box, Grid, GridItem, Show, useColorModeValue } from '@chakra-ui/react';
-import ScrollToTopButton from '@components/Blocks/ScrollToTop';
 import Header from '@components/Layout/Header';
 import Sidebar from '@components/Layout/Sidebar';
 import React from 'react';
@@ -22,10 +21,7 @@ const Layout: React.FC<IProps> = ({ children }) => {
                <Box overflowY="auto" h="calc(100vh - 2px)" id="scrollableDiv">
                   <Header />
 
-                  <div>
-                     {children}
-                     <ScrollToTopButton />
-                  </div>
+                  <div>{children}</div>
                </Box>
             </GridItem>
          </Grid>
