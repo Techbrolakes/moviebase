@@ -40,7 +40,10 @@ const Header: React.FC = () => {
    const setSortBy = useMovieQueryStore((state) => state.setSortBy);
    const setSearchText = useMovieQueryStore((state) => state.setSearchText);
    const navigate = useNavigate();
-   const placeH = useColorModeValue('#000', '#fff');
+   const placeH = useColorModeValue('#fff', '#fff');
+   const btnbg = useColorModeValue('#1976d2', '#fff');
+   const btnColor = useColorModeValue('#fff', '#121212');
+   const iconBg = useColorModeValue('#1976d2', '#121212');
 
    const handleSearchInputChange = (event: any) => {
       setSearchText(event.target.value);
@@ -57,7 +60,7 @@ const Header: React.FC = () => {
          <Stack bg={bg} spacing={4} sx={headerBoxStyles}>
             <Flex h={['25px, 40px']} ml={['-5', '-5', '0']} align={'center'} justify="space-between">
                <Show below="lg">
-                  <IconButton mr={4} aria-label="bars" px={4} onClick={onOpen} size={'md'} icon={<FaBars size={'18px'} />} />
+                  <IconButton mr={4} aria-label="bars" bg={iconBg} color={'#fff'} px={4} onClick={onOpen} size={'md'} icon={<FaBars size={'25px'} />} />
                </Show>
 
                <Show above="md">
@@ -88,7 +91,7 @@ const Header: React.FC = () => {
 
                <Show above="lg">
                   <Menu>
-                     <MenuButton as={Button} rightIcon={<ChevronDownIcon />} variant="solid">
+                     <MenuButton bg={btnbg} color={btnColor} as={Button} rightIcon={<ChevronDownIcon />} variant="solid">
                         Sort By
                      </MenuButton>
                      <MenuList>

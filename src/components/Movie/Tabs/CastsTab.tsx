@@ -13,7 +13,7 @@ interface IProps {
 }
 
 const CastsTab: React.FC<IProps> = ({ data }) => {
-   const text = useColorModeValue('#fff', '#000');
+   const bg = useColorModeValue('#1976d2', '#090909');
 
    return (
       <div>
@@ -21,9 +21,9 @@ const CastsTab: React.FC<IProps> = ({ data }) => {
             {data?.credits.cast.map(({ original_name, profile_path, id, character }) => (
                <Link key={id} to={`/actor/${id}`}>
                   <MovieCardContainer>
-                     <Stack spacing={4} bg="#000" h={'fit-content'} w={'fit-content'} pb={4}>
+                     <Stack spacing={4} bg={bg} h={'fit-content'} w={'fit-content'} pb={4}>
                         <Image width={['500px', '400px']} objectFit={'cover'} fallbackSrc={fallbackSrc} height={['300px', '250px']} src={`${tmdbSrc}${profile_path}`} />
-                        <VStack py={2} spacing={2} color={text}>
+                        <VStack py={2} spacing={2} color={'#fff'}>
                            <Text sx={responsiveText}>{original_name}</Text>
                            <span>as</span>
                            <Text textAlign={'center'} sx={responsiveText}>

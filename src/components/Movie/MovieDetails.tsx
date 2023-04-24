@@ -43,7 +43,7 @@ const MovieDetails: React.FC = () => {
    const { id } = useParams();
    const { data, isLoading, isFetching, refetch } = useMovie(id);
    const filter = useColorModeValue('none', 'invert(1)');
-   const btnbg = useColorModeValue('#121212', '#fff');
+   const btnbg = useColorModeValue('#1976d2', '#fff');
    const btnColor = useColorModeValue('#fff', '#121212');
    const navigate = useNavigate();
    const [Loading, setLoading] = useState(false);
@@ -140,12 +140,12 @@ const MovieDetails: React.FC = () => {
 
          <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <ModalContent mx={0}>
+            <ModalContent h={'fit-content'} w={'fit-content'} mx={0}>
                <Show above="lg">
                   <iframe title="Trailer" src={`https://www.youtube.com/embed/${trailer?.key}`} height={'400px'} width={'700px'} allow="autoplay" allowFullScreen />
                </Show>
                <Hide above="lg">
-                  <iframe title="Trailer" src={`https://www.youtube.com/embed/${trailer?.key}`} height={'300px'} width={'500px'} allow="autoplay" allowFullScreen />
+                  <iframe title="Trailer" src={`https://www.youtube.com/embed/${trailer?.key}`} height={'280px'} width={'380px'} allow="autoplay" allowFullScreen />
                </Hide>
             </ModalContent>
          </Modal>

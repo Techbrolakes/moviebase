@@ -18,6 +18,7 @@ const Sidebar: React.FC = () => {
    const filter = useColorModeValue('none', 'invert(1)');
    const logo = useColorModeValue('#1976D2', '#dc1a28');
    const link = useColorModeValue('#121212', '#fff');
+   const linkActive = useColorModeValue('#1976D2', '#DC1A28');
    const navigate = useNavigate();
 
    const handleCategoryClick = (id: string) => {
@@ -33,7 +34,6 @@ const Sidebar: React.FC = () => {
    if (isLoading) {
       return (
          <Stack spacing={4} px={4} py={4}>
-            <Loading />
             <Loading />
             <Loading />
          </Stack>
@@ -56,7 +56,7 @@ const Sidebar: React.FC = () => {
                   <ListItem key={value} cursor={'pointer'} onClick={() => handleCategoryClick(value)}>
                      <HStack>
                         <Image boxSize="25px" style={{ filter }} src={genresIcons[label.toLowerCase()]} alt="Dan Abramov" />
-                        <Button variant={'link'} sx={BtnStyles} color={value === selectedCategoryId ? 'red.500' : `${link}`}>
+                        <Button variant={'link'} sx={BtnStyles} color={value === selectedCategoryId ? `${linkActive}` : `${link}`}>
                            {label}
                         </Button>
                      </HStack>
@@ -74,7 +74,7 @@ const Sidebar: React.FC = () => {
                   <ListItem key={id} cursor={'pointer'} onClick={() => handleGenreClick(id)}>
                      <HStack>
                         <Image boxSize="25px" style={{ filter }} src={genresIcons[name.toLowerCase()]} alt="Dan Abramov" />
-                        <Button variant={'link'} sx={BtnStyles} color={id === selectedGenreId ? 'red.500' : `${link}`}>
+                        <Button variant={'link'} sx={BtnStyles} color={id === selectedGenreId ? `${linkActive}` : `${link}`}>
                            {name}
                         </Button>
                      </HStack>

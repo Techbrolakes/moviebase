@@ -17,7 +17,7 @@ const ActorDetails: React.FC = () => {
    const navigate = useNavigate();
    const { data, isFetching, isLoading } = useActors(id);
    const { data: actorMovies, isLoading: isLoad, isFetching: isFetch } = useActorMovies(data?.id);
-   const btnbg = useColorModeValue('#121212', '#fff');
+   const btnbg = useColorModeValue('#1976d2', '#fff');
    const btnColor = useColorModeValue('#fff', '#121212');
 
    if (isLoad || isLoading || isFetching || isFetch || !actorMovies) return <AnimationLoader />;
