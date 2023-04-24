@@ -66,4 +66,7 @@ Start the server
   npm run start
 ```
 
+# Moviebase built by Lekan Daramola
+
+- [Connect Via LinkedIn]([https://www.github.com/octokatherine](https://www.linkedin.com/in/lekandar/))
  
