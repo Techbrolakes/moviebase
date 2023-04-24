@@ -1,7 +1,7 @@
-# moviebase
+# Moviebase
  The app is written in TypeScript, Chakra UI for user interfaces, Zustand for state management and React Query for client side data fetching, app complied with vite. The application fetches data from the tmdb api 
  
- # moviebase features
+ # Moviebase features
  
  ### Browse an extensive collection of movies and apply filters to find exactly what you're looking for.
  </br>
