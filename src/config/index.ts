@@ -9,6 +9,12 @@ const sortOrders = [
    { value: 'vote_average.desc', label: 'Rating (High to Low)' },
 ];
 
+const categories = [
+   { label: 'Popular', value: 'popular' },
+   { label: 'Top Rated', value: 'top_rated' },
+   { label: 'Upcoming', value: 'upcoming' },
+];
+
 const fallbackSrc = 'https://competent-fermi-0457c4.netlify.app/static/media/no_image.22d2aa4d.jpg';
 
 const tmdbSrc = 'https://image.tmdb.org/t/p/w500/';
@@ -17,6 +23,7 @@ const config = {
    sortOrders,
    fallbackSrc,
    tmdbSrc,
+   categories,
 };
 
 export default config;

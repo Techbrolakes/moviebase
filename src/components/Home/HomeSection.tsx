@@ -12,15 +12,23 @@ import CustomLoader from '@components/Blocks/CustomLoader';
 import { responsiveHeader } from '@config/styles';
 import useMovieQueryStore from '@config/store';
 import useGenres from '@hooks/useGenres';
+import Loading from '@components/Blocks/Loading';
+import NoDataLoader from '@components/Blocks/NoDataLoader';
 
-const { fallbackSrc, tmdbSrc } = config;
+const { fallbackSrc, tmdbSrc, categories, sortOrders } = config;
 
 const HomeSection: React.FC = () => {
    const { data, isLoading, fetchNextPage, hasNextPage } = useMovies();
    const { data: genre } = useGenres();
    const SelectedGenre = useMovieQueryStore((s) => s.filters.genre);
+   const SelectedCategory = useMovieQueryStore((s) => s.filters.category);
+   const SelectedSortBy = useMovieQueryStore((s) => s.filters.sortBy);
    const ShowGenre = genre?.genres?.find((g) => g.id === SelectedGenre);
+   const ShowCategory = categories?.find((g) => g.value === SelectedCategory);
+   const ShowSortBy = sortOrders?.find((g) => g.value === SelectedSortBy);
    const navigate = useNavigate();
+
+   console.log(data?.pages?.length);
 
    if (isLoading) {
       return <MovieCardSkeleton />;
@@ -28,20 +36,34 @@ const HomeSection: React.FC = () => {
 
    return (
       <Stack pb={8} pt={['120px', '120px', '130px']} spacing={8}>
+         {data?.pages?.map((movie) => {
+            return <div key={movie?.total_pages}>{movie?.results?.length === 0 && <NoDataLoader />}</div>;
+         })}
          <FeaturedMovie />
          <Box>
             {ShowGenre && (
-               <Text px={7} mb={2} sx={responsiveHeader}>
+               <Text px={7} mb={2} sx={responsiveHeader} fontFamily={'Cabin'}>
                   {ShowGenre.name} Movies
                </Text>
             )}
-            <InfiniteScroll dataLength={data?.pages.length || 0} next={fetchNextPage} hasMore={!!hasNextPage} loader={<CustomLoader />} scrollableTarget="scrollableDiv">
-               {data?.pages.map((page, index) => (
+            {ShowCategory && (
+               <Text px={7} mb={2} sx={responsiveHeader} fontFamily={'Cabin'}>
+                  {ShowCategory.label} Movies
+               </Text>
+            )}
+            {ShowSortBy && (
+               <Text textAlign={'right'} px={7} mb={2} fontSize={'2xl'} fontFamily={'Cabin'}>
+                  Sorted By - {ShowSortBy.label} Movies
+               </Text>
+            )}
+            <InfiniteScroll dataLength={data?.pages?.length || 0} next={fetchNextPage} hasMore={!!hasNextPage} loader={<CustomLoader />} scrollableTarget="scrollableDiv">
+               {data?.pages?.map((page, index) => (
                   <Box key={index}>
                      <section>
                         <SimpleGrid columns={{ sm: 2, md: 2, lg: 3, xl: 4 }} spacing={[16, 12]} padding={['10px', '25px']}>
                            {page?.results?.map(({ poster_path, id, vote_average }) => (
                               <div key={id} onClick={() => navigate(`movie/${id}`)}>
+                                 {page?.results?.length === 0 && <NoDataLoader />}
                                  <MovieCardContainer>
                                     <Stack spacing={4} w={'fit-content'}>
                                        <Image
