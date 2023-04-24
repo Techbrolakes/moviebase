@@ -12,7 +12,13 @@
  </br>
  
  
- ### Get information about the movie, including cast details, movie description, movie details, and recommended movies.
+ ### Get information about the movie, including movie description, movie details, and recommended movies.
  </br>
 
 ![screely-1682348900629](https://user-images.githubusercontent.com/45468437/234041437-140c008f-2caf-40c0-86be-d1ffa0a19b22.png)
+
+
+ ### Get information about the movie casts
+ </br>
+ 
+ ![screely-1682349648426](https://user-images.githubusercontent.com/45468437/234041942-fbb2bfb2-16d9-465b-b1bd-68aa8f17cbc5.png)
