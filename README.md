@@ -74,8 +74,8 @@ Start the server
 
 # Moviebase built by Lekan Daramola
 
-- [Connect Via LinkedIn]([https://www.linkedin.com/in/lekandar/])
+- [Connect Via LinkedIn](https://www.linkedin.com/in/lekandar/)
 
-- [Connect Via Twitter]([https://twitter.com/techbrolakes])
+- [Connect Via Twitter](https://twitter.com/techbrolakes)
 
- 
+
