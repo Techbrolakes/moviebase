@@ -25,8 +25,10 @@
 
 
 </br>
+
  ### Get more information on your favorite movie actor
- </br>
+
+</br>
  
  ![screely-1682349760937](https://user-images.githubusercontent.com/45468437/234042481-b42d066a-b6d6-46cb-ba41-5514ec31841e.png)
 
