@@ -32,9 +32,9 @@ const ActorMovies: React.FC<IProps> = ({ actorMovies, name }) => {
                         <Image
                            cursor={'pointer'}
                            w={'100%'}
-                           h={['550px', '350px', '350px', '400px']}
+                           h={['500px', '350px', '350px', '400px']}
                            fallbackSrc={fallbackSrc}
-                           objectFit={['cover', 'contain', 'contain', 'contain']}
+                           objectFit={'contain'}
                            src={`${tmdbSrc}${poster_path}`}
                         />
                         <Center>

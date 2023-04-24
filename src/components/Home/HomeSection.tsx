@@ -42,17 +42,17 @@ const HomeSection: React.FC = () => {
          <FeaturedMovie />
          <Box>
             {ShowGenre && (
-               <Text px={7} mb={2} sx={responsiveHeader} fontFamily={'Cabin'}>
+               <Text px={7} mb={6} sx={responsiveHeader} fontFamily={'Cabin'}>
                   {ShowGenre.name} Movies
                </Text>
             )}
             {ShowCategory && (
-               <Text px={7} mb={2} sx={responsiveHeader} fontFamily={'Cabin'}>
+               <Text px={7} mb={6} sx={responsiveHeader} fontFamily={'Cabin'}>
                   {ShowCategory.label} Movies
                </Text>
             )}
             {ShowSortBy && (
-               <Text textAlign={'right'} px={7} mb={2} fontSize={'2xl'} fontFamily={'Cabin'}>
+               <Text textAlign={'right'} px={7} mb={6} fontSize={'2xl'} fontFamily={'Cabin'}>
                   Sorted By - {ShowSortBy.label} Movies
                </Text>
             )}
@@ -69,9 +69,9 @@ const HomeSection: React.FC = () => {
                                        <Image
                                           cursor={'pointer'}
                                           w={'100%'}
-                                          h={['550px', '350px', '350px', '400px']}
+                                          h={['500px', '350px', '350px', '400px']}
                                           fallbackSrc={fallbackSrc}
-                                          objectFit={['cover', 'contain', 'contain', 'contain']}
+                                          objectFit={'contain'}
                                           src={`${tmdbSrc}${poster_path}`}
                                        />
                                        <Center cursor={'pointer'}>

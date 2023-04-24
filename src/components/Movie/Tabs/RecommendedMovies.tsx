@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import useRecommendations from '@hooks/useRecommendations';
 import MovieCardContainer from '@components/Blocks/MovieCardContainer';
-import { Image, SimpleGrid, Stack } from '@chakra-ui/react';
+import { Center, Image, SimpleGrid, Stack } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import config from '@config/index';
 import Loading from '@components/Blocks/Loading';
 import { MovieDetails } from '@config/types';
+import ReactStarRatings from 'react-star-ratings';
 
 const { fallbackSrc, tmdbSrc } = config;
 
@@ -38,17 +39,22 @@ const RecommendedMovies: React.FC<IProps> = ({ movies }) => {
       <>
          <section>
             <SimpleGrid columns={{ sm: 2, md: 2, lg: 3, xl: 4 }} spacing={12}>
-               {data?.results.map(({ poster_path, id }) => (
+               {data?.results.map(({ poster_path, id, vote_average }) => (
                   <div key={id} onClick={() => navigate(`/movie/${id}`, { replace: true })}>
                      <MovieCardContainer>
-                        <Image
-                           cursor={'pointer'}
-                           w={'100%'}
-                           h={['550px', '350px', '350px', '400px']}
-                           fallbackSrc={fallbackSrc}
-                           objectFit={['cover', 'contain', 'contain', 'contain']}
-                           src={`${tmdbSrc}${poster_path}`}
-                        />
+                        <Stack spacing={2} boxShadow={'2xl'}>
+                           <Image
+                              cursor={'pointer'}
+                              w={'100%'}
+                              h={['500px', '350px', '350px', '400px']}
+                              fallbackSrc={fallbackSrc}
+                              objectFit={'contain'}
+                              src={`${tmdbSrc}${poster_path}`}
+                           />
+                           <Center>
+                              <ReactStarRatings rating={vote_average / 2} starRatedColor="#FAAF00" numberOfStars={5} starDimension="25px" starSpacing="2px" />
+                           </Center>
+                        </Stack>
                      </MovieCardContainer>
                   </div>
                ))}
