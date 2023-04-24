@@ -9,7 +9,8 @@
 ![screely-1682348866113](https://user-images.githubusercontent.com/45468437/234039735-9b712d6f-43a9-4d1d-b7fe-1cf821253e1f.png)
 
 
-
+ </br>
  ### Get information about the movie, including cast details, movie description, movie details, and recommended movies.
  </br>
- ![screely-1682348900629](https://user-images.githubusercontent.com/45468437/234040489-abede615-ef7d-4040-afbc-8c390d19b32c.png)
+
+![screely-1682348900629](https://user-images.githubusercontent.com/45468437/234041437-140c008f-2caf-40c0-86be-d1ffa0a19b22.png)
