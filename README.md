@@ -31,7 +31,8 @@
  ![screely-1682349760937](https://user-images.githubusercontent.com/45468437/234042481-b42d066a-b6d6-46cb-ba41-5514ec31841e.png)
 
  </br>
- ### Get more information on your favorite movie top movies
+ 
+ ### Get more information on your favorite actor top movies
  </br>
  
 ![screely-1682349848957](https://user-images.githubusercontent.com/45468437/234042844-17a5b18d-32dd-44ed-b901-d844c42ff6e7.png)
