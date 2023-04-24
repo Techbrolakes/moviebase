@@ -28,7 +28,9 @@ const HomeSection: React.FC = () => {
    const ShowSortBy = sortOrders?.find((g) => g.value === SelectedSortBy);
    const navigate = useNavigate();
 
-   console.log(data?.pages?.length);
+   const checkForEmptyResults = (data: any) => {
+      return data?.pages?.some((movie: any) => movie?.results?.length === 0);
+   };
 
    if (isLoading) {
       return <MovieCardSkeleton />;
@@ -36,9 +38,7 @@ const HomeSection: React.FC = () => {
 
    return (
       <Stack pb={8} pt={['120px', '120px', '130px']} spacing={8}>
-         {data?.pages?.map((movie) => {
-            return <div key={movie?.total_pages}>{movie?.results?.length === 0 && <NoDataLoader />}</div>;
-         })}
+         {checkForEmptyResults(data) && <NoDataLoader />}
          <FeaturedMovie />
          <Box>
             {ShowGenre && (
