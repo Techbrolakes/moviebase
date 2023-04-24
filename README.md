@@ -17,8 +17,24 @@
 
 ![screely-1682348900629](https://user-images.githubusercontent.com/45468437/234041437-140c008f-2caf-40c0-86be-d1ffa0a19b22.png)
 
-
+ </br>
  ### Get information about the movie casts
  </br>
  
  ![screely-1682349648426](https://user-images.githubusercontent.com/45468437/234041942-fbb2bfb2-16d9-465b-b1bd-68aa8f17cbc5.png)
+
+
+</br>
+ ### Get more information on your favorite movie actor
+ </br>
+ 
+ ![screely-1682349760937](https://user-images.githubusercontent.com/45468437/234042481-b42d066a-b6d6-46cb-ba41-5514ec31841e.png)
+
+ </br>
+ ### Get more information on your favorite movie top movies
+ </br>
+ 
+![screely-1682349848957](https://user-images.githubusercontent.com/45468437/234042844-17a5b18d-32dd-44ed-b901-d844c42ff6e7.png)
+
+ 
+ 
