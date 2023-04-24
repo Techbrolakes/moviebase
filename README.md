@@ -43,6 +43,10 @@
  
 ![screely-1682349848957](https://user-images.githubusercontent.com/45468437/234042844-17a5b18d-32dd-44ed-b901-d844c42ff6e7.png)
 
+ </br>
+ </br>
+  
+  
  ## Run Locally
 
 Clone the project
@@ -66,7 +70,7 @@ Install dependencies
 Start the server
 
 ```bash
-  npm run start
+  npm run dev
 ```
 
  </br>
