@@ -36,6 +36,7 @@ import MovieImages from './Tabs/MovieImages';
 import { FaPlay } from 'react-icons/fa';
 import { responsiveText } from '@config/styles';
 import AnimationLoader from '@components/Blocks/AnimationLoader';
+import millify from 'millify';
 
 const { fallbackSrc, tmdbSrc } = config;
 
@@ -99,14 +100,26 @@ const MovieDetails: React.FC = () => {
                         <Heading fontSize={'20px'}>Overview</Heading>
                         <Text sx={responsiveText}>{data?.overview}</Text>
                      </Stack>
-                     <Flex align={'center'} gap={10} wrap={'wrap'}>
-                        {data?.genres.map(({ id, name }) => (
-                           <HStack key={id} spacing={2}>
-                              <Image boxSize="25px" style={{ filter }} src={genresIcons[name.toLowerCase()]} alt="Dan Abramov" />
-                              <Button variant={'link'}>{name}</Button>
-                           </HStack>
-                        ))}
-                     </Flex>
+                     <Stack spacing={8}>
+                        <Flex align={'center'} gap={10} wrap={'wrap'}>
+                           {data?.genres?.map(({ id, name }) => (
+                              <HStack key={id} spacing={2}>
+                                 <Image boxSize="25px" style={{ filter }} src={genresIcons[name.toLowerCase()]} alt="Dan Abramov" />
+                                 <Button variant={'link'}>{name}</Button>
+                              </HStack>
+                           ))}
+                        </Flex>
+                        {(data?.revenue != 0 || data?.budget != 0) && (
+                           <Flex align="center">
+                              <Text mr={4} sx={responsiveText}>
+                                 Budget : ${millify(data?.budget)}
+                              </Text>
+                              <Text mr={4} sx={responsiveText}>
+                                 Revenue : ${millify(data?.revenue)}
+                              </Text>
+                           </Flex>
+                        )}
+                     </Stack>
                      <Button bg={btnbg} color={btnColor} onClick={onOpen} p={4}>
                         <HStack>
                            <FaPlay />
